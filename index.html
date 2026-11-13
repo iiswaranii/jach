@@ -38,7 +38,6 @@ button{background:none;border:0;padding:0;cursor:pointer;text-align:left}
 button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:12px}
 svg{display:block}
 .app{position:relative;height:100%;height:100dvh;max-width:480px;padding-top:env(safe-area-inset-top);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);margin:0 auto;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
-@media (min-width:480px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
 .view{flex:1;overflow-y:auto;padding:18px 16px 28px;display:flex;flex-direction:column;gap:22px}
 .view.fill{overflow:hidden;padding-bottom:12px}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(25px,7.5vw,30px);line-height:1.12;margin:0;letter-spacing:-.01em;text-wrap:balance}
@@ -169,14 +168,24 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
 .chipsrow::-webkit-scrollbar{display:none}
 .fchip{flex:0 0 auto;border-radius:999px;padding:7px 13px;font-weight:800;font-size:13px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
 .fchip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* immersive reflect: field fills the screen, header and tab bar float over it with blur */
+.app.immersive .view{position:absolute;inset:0;padding:0;overflow:hidden;display:block}
+.app.immersive .tabs{position:absolute;left:0;right:0;bottom:0;z-index:4;border-top:0;background:color-mix(in srgb,var(--surface) 62%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4)}
+.field.full{position:absolute;inset:0;border-radius:0;min-height:0}
+.glass{-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.rtopov{position:absolute;left:0;right:0;top:0;z-index:3;padding:calc(14px + env(safe-area-inset-top)) 16px 12px;display:flex;flex-direction:column;gap:10px}
+.rbotov{position:absolute;left:0;right:0;z-index:3;padding:10px 16px 10px;display:flex;flex-direction:column;gap:6px;background:none}
+.rbotov .btn{box-shadow:0 6px 18px rgba(34,30,58,.16)}
+.rbotov .stat{text-align:center;font-size:12px}
 /* glossy bubbles */
 .bub{position:absolute;left:0;top:0;width:128px;height:128px;border-radius:50%;will-change:transform;color:#221E3A;transform-origin:64px 64px}
-.bub .in{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:inset 0 -10px 18px rgba(30,20,60,.18),inset 0 6px 12px rgba(255,255,255,.35),0 10px 22px rgba(34,30,58,.18)}
+.bub .in{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+.bub img.art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none;pointer-events:none}
 .bub .art{position:absolute;inset:0}
 .bub .lbw{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);width:max-content;max-width:100px;background:rgba(255,255,255,.93);border-radius:11px;padding:4px 8px;box-shadow:0 2px 6px rgba(30,20,60,.12)}
 .bub .lb{font-weight:800;font-size:11.5px;line-height:1.15;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#221E3A}
 .bub .gl{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse 26% 18% at 32% 20%,rgba(255,255,255,.8) 0,rgba(255,255,255,0) 100%),radial-gradient(circle at 70% 85%,rgba(255,255,255,0) 50%,rgba(255,255,255,.25) 66%,rgba(255,255,255,0) 72%)}
-.bub .rim{position:absolute;inset:0;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.bub .rim{position:absolute;inset:0;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5),inset 0 -12px 20px rgba(30,20,60,.14)}
 .bub .done{position:absolute;top:14px;right:22px;width:22px;height:22px;border-radius:50%;background:var(--good);display:grid;place-items:center;z-index:2}
 .bub.sur .in{background:conic-gradient(from 200deg,#FFD764,#FF9EB5,#B9A2FF,#93C8FF,#95E2A6,#FFD764)}
 .field{background:radial-gradient(circle at 50% 40%,var(--surface) 0,var(--surface2) 70%)}
@@ -192,7 +201,7 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
 .reflectcard .n b{font-family:var(--display);font-size:18px;line-height:1.2}
 .reflectcard .n span{font-size:13px;font-weight:700;opacity:.7}
 .reflectcard .art{flex:0 0 42%;position:relative}
-@media (min-width:700px){body{background:var(--surface2)}.app{box-shadow:0 0 0 1px var(--line),0 20px 60px rgba(0,0,0,.12)}}
+@media (min-width:700px){body{background:var(--surface2)}.app{box-shadow:0 20px 60px rgba(0,0,0,.12)}}
 @media (max-width:350px){.grid{gap:8px}.etile{min-height:132px;padding:12px}.etile .fc{width:52px;height:52px}.rbody{padding:14px 16px}}
 @media (prefers-reduced-motion:no-preference){.rbody>*{animation:in .3s ease both}@keyframes in{from{transform:translateY(8px);opacity:.3}to{transform:none;opacity:1}}.rart svg{animation:sc 9s ease-in-out both}@keyframes sc{from{transform:scale(1.06)}to{transform:scale(1)}}}
 </style>
@@ -626,6 +635,7 @@ var tab='today', sub=null, exTab='feel', query='', rcat='all';
 function setTabs(){ var u=U(), b=document.querySelectorAll('.tabs button'); for(var i=0;i<b.length;i++){ $('tb'+i).textContent=u.tabs[i]; if(b[i].dataset.tab===tab) b[i].setAttribute('aria-current','page'); else b[i].removeAttribute('aria-current'); } }
 function render(){
   var u=U(), h='', v=$('view'); document.documentElement.lang=S.lang; setTabs(); v.className='view'; bfStop();
+  document.querySelector('.app').classList.toggle('immersive', tab==='reflect' && !sub);
   if(sub){ renderSub(); return; }
   if(tab==='today'){
     var hr=new Date().getHours(), gi=hr<12?0:(hr<17?1:2), day=dayN(), sotd=META[day%META.length], rs=SCEN[(day*7)%SCEN.length];
@@ -647,13 +657,11 @@ function render(){
     h+='<div><h1>'+u.explore+'</h1><p class="sub">'+u.exsub+'</p></div><label class="sbox">'+ICON.search+'<input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="'+esc(u.sph)+'" value="'+esc(query)+'"></label><div id="exbody" style="display:flex;flex-direction:column;gap:18px"></div>';
   }
   else if(tab==='reflect'){
-    v.className='view fill';
     var cats=['all'].concat(Object.keys(CATS).filter(function(c){ return SCEN.some(function(s){return s.cat===c;}); }));
-    h+='<div><h1>'+u.reflect+'</h1><p class="sub">'+u.rsub+'</p></div>';
-    h+='<div class="chipsrow">'+cats.map(function(c){ return '<button class="fchip" data-rcat="'+c+'" aria-pressed="'+(rcat===c)+'">'+(c==='all'?u.allc:esc(cname(c)))+'</button>'; }).join('')+'</div>';
-    h+='<div class="field" id="bf"><div class="hint" id="bfhint">'+u.drag+'</div></div>';
-    h+='<div class="rfoot"><button class="btn ghost" id="bshuffle">'+u.shuffle+'</button><button class="btn" id="bsurprise">'+u.surprise+'</button></div>';
-    h+='<div class="stat" style="text-align:center">'+S.rdone.length+' '+u.of+' '+SCEN.length+' '+u.reflected+'</div>';
+    h+='<div class="field full" id="bf"></div>';
+    h+='<div class="rtopov glass" id="rtop"><div><h1>'+u.reflect+'</h1><p class="sub">'+u.rsub+'</p></div>';
+    h+='<div class="chipsrow">'+cats.map(function(c){ return '<button class="fchip" data-rcat="'+c+'" aria-pressed="'+(rcat===c)+'">'+(c==='all'?u.allc:esc(cname(c)))+'</button>'; }).join('')+'</div></div>';
+    h+='<div class="rbotov" id="rbot"><div class="rfoot"><button class="btn ghost" id="bshuffle">'+u.shuffle+'</button><button class="btn" id="bsurprise">'+u.surprise+'</button></div><div class="stat">'+S.rdone.length+' '+u.of+' '+SCEN.length+' '+u.reflected+' · '+u.drag+'</div></div>';
   }
   else {
     var saved=META.filter(function(m){return isSaved(m.id);}), done=META.filter(function(m){return isDone(m.id);}), rd=SCEN.filter(function(s){ return S.rdone.indexOf(s.id)>-1; });
@@ -668,7 +676,7 @@ function render(){
   }
   v.innerHTML=h; v.scrollTop=0;
   if(tab==='explore'){ var q=$('q'); q.addEventListener('input',function(){ query=q.value; renderExplore(); }); renderExplore(); }
-  if(tab==='reflect') bfStart();
+  if(tab==='reflect'){ var tb=document.querySelector('.tabs'); $('rbot').style.bottom=tb.offsetHeight+'px'; bfStart(); }
 }
 function renderSub(){
   var u=U(), v=$('view'), e=emo(sub.id), h='';
@@ -698,7 +706,7 @@ function renderExplore(){
 }
 
 /* ---------------- bubble field: infinite, draggable, a little jelly ---------------- */
-var BF={ox:0,oy:0,vx:0,vy:0,els:{},raf:0,down:null,moved:0,on:false,jx:0,jy:0,jvx:0,jvy:0};
+var BF={ox:0,oy:0,vx:0,vy:0,els:{},raf:0,down:null,moved:0,on:false,jx:0,jy:0,jvx:0,jvy:0,svx:0,svy:0,pdx:0,pdy:0};
 var BCOLS=5, BROWS=5, BDX=142, BDY=124, BR=64, BITEMS=null;
 function seeded(n){ var r=n>>>0; return function(){ r=(r*1664525+1013904223)>>>0; return r/4294967296; }; }
 function bItems(){
@@ -707,55 +715,67 @@ function bItems(){
   var out=[]; for(var n=0;n<BCOLS*BROWS;n++) out.push(n===12?{k:'r'}:list[(n-(n>12?1:0))%list.length]);
   return out;
 }
+var IMGC={};
+function sceneImg(id){ if(!IMGC[id]) IMGC[id]='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(scene(id,0).replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ')); return IMGC[id]; }
 function bubHTML(it){
-  if(it.k==='r') return '<div class="bub sur" data-brand="1"><div class="in"><span style="position:absolute;left:44px;top:26px">'+ICON.shuffle+'</span><div class="lbw"><span class="lb">'+esc(U().surprise)+'</span></div></div><div class="gl"></div><div class="rim"></div></div>';
+  if(it.k==='r') return '<div class="bub sur" data-brand="1"><div class="in"><span style="position:absolute;left:44px;top:26px">'+ICON.shuffle+'</span></div><div class="lbw"><span class="lb">'+esc(U().surprise)+'</span></div><div class="gl"></div><div class="rim"></div></div>';
   var s=scen(it.id), done=S.rdone.indexOf(s.id)>-1;
-  return '<div class="bub" data-bsc="'+s.id+'"><div class="in" style="background:'+CATS[s.cat].col+'"><div class="art grain">'+scene(s.id,0)+'</div><div class="lbw"><span class="lb">'+esc(s.ti)+'</span></div></div><div class="gl"></div><div class="rim"></div>'+(done?'<span class="done">'+ICON.tick+'</span>':'')+'</div>';
+  return '<div class="bub" data-bsc="'+s.id+'"><div class="in" style="background:'+CATS[s.cat].col+'"><img class="art" alt="" draggable="false" src="'+sceneImg(s.id)+'"></div><div class="lbw"><span class="lb">'+esc(s.ti)+'</span></div><div class="gl"></div><div class="rim"></div>'+(done?'<span class="done">'+ICON.tick+'</span>':'')+'</div>';
 }
 function mod(a,n){ return ((a%n)+n)%n; }
+// Jelly only on a fast flick, and only a little: below JT px/frame the bubbles stay perfectly round.
+var JT=22, JMAX=.055;
 function bfFrame(){
   var box=$('bf'); if(!box){ BF.on=false; return; }
-  var W=box.clientWidth, H=box.clientHeight, cx=W/2, cy=H/2, R=Math.max(W,H)*.66, seen={};
-  var jm=Math.min(.22,Math.sqrt(BF.jx*BF.jx+BF.jy*BF.jy)), ja=Math.atan2(BF.jy,BF.jx);
+  var W=box.clientWidth, H=box.clientHeight, top=BF.top||0, bot=BF.bot||0, cx=W/2, cy=top+(H-top-bot)/2, R=Math.max(W,H-top-bot)*.7, seen={};
+  var jm=Math.min(JMAX,Math.sqrt(BF.jx*BF.jx+BF.jy*BF.jy)), ja=Math.atan2(BF.jy,BF.jx), jel=jm>.003;
   var r0=Math.floor((-BR-BF.oy-cy)/BDY)-1, r1=Math.ceil((H+BR-BF.oy-cy)/BDY)+1;
   for(var r=r0;r<=r1;r++){
     var off=(mod(r,2)?BDX/2:0), c0=Math.floor((-BR-BF.ox-cx-off)/BDX)-1, c1=Math.ceil((W+BR-BF.ox-cx-off)/BDX)+1;
     for(var c=c0;c<=c1;c++){
       var x=c*BDX+off+BF.ox+cx, y=r*BDY+BF.oy+cy, d=Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy));
-      var sc=Math.max(.3,Math.min(1.08,1.1-Math.pow(d/R,2)*.9)); if(sc<=.3) continue;
+      var sc=Math.max(.35,Math.min(1.06,1.08-Math.pow(d/R,2)*.8));
       var key=c+','+r; seen[key]=1;
       var el=BF.els[key];
-      if(!el){ var it=BITEMS[mod(r,BROWS)*BCOLS+mod(c,BCOLS)]; var t=document.createElement('div'); t.innerHTML=bubHTML(it); el=t.firstChild; el._f=.7+((mod(c*7+r*13,9))/12); box.appendChild(el); BF.els[key]=el; }
-      var m=jm*el._f, tr='translate('+(x-BR).toFixed(1)+'px,'+(y-BR).toFixed(1)+'px) scale('+sc.toFixed(3)+')';
-      if(m>.004) tr+=' rotate('+ja.toFixed(3)+'rad) scale('+(1+m).toFixed(3)+','+(1-m*.7).toFixed(3)+') rotate('+(-ja).toFixed(3)+'rad)';
+      if(!el){ var it=BITEMS[mod(r,BROWS)*BCOLS+mod(c,BCOLS)]; var tmp=document.createElement('div'); tmp.innerHTML=bubHTML(it); el=tmp.firstChild; el._f=.9+(mod(c*7+r*13,5))/20; el._o=-1; box.appendChild(el); BF.els[key]=el; }
+      var tr='translate3d('+(x-BR).toFixed(1)+'px,'+(y-BR).toFixed(1)+'px,0) scale('+sc.toFixed(3)+')';
+      if(jel){ var m=jm*el._f; tr+=' rotate('+ja.toFixed(3)+'rad) scale('+(1+m).toFixed(3)+','+(1-m*.6).toFixed(3)+') rotate('+(-ja).toFixed(3)+'rad)'; }
       el.style.transform=tr;
-      el.style.opacity=sc<.48?((sc-.3)/.18).toFixed(2):1;
+      var o=sc<.5?Math.round((sc-.35)/.15*20)/20:1; if(o!==el._o){ el.style.opacity=o; el._o=o; }
     }
   }
   for(var k in BF.els) if(!seen[k]){ BF.els[k].remove(); delete BF.els[k]; }
 }
 function bfLoop(){
   BF.raf=0; var busy=false;
-  if(!BF.down && (Math.abs(BF.vx)>.12 || Math.abs(BF.vy)>.12)){ BF.ox+=BF.vx; BF.oy+=BF.vy; BF.vx*=.94; BF.vy*=.94; busy=true; }
-  // jelly spring: stretch follows velocity, then wobbles back to round
-  var tx=BF.down?BF.dvx*.012:BF.vx*.012, ty=BF.down?BF.dvy*.012:BF.vy*.012;
-  BF.jvx+=(tx-BF.jx)*.18; BF.jvy+=(ty-BF.jy)*.18; BF.jvx*=.78; BF.jvy*=.78; BF.jx+=BF.jvx; BF.jy+=BF.jvy;
-  if(Math.abs(BF.jx)+Math.abs(BF.jy)+Math.abs(BF.jvx)+Math.abs(BF.jvy)>.002) busy=true; else { BF.jx=BF.jy=BF.jvx=BF.jvy=0; }
-  if(BF.down){ BF.dvx*=.85; BF.dvy*=.85; busy=true; }
+  if(!BF.down && (Math.abs(BF.vx)>.08 || Math.abs(BF.vy)>.08)){ BF.ox+=BF.vx; BF.oy+=BF.vy; BF.vx*=.95; BF.vy*=.95; busy=true; }
+  if(BF.down){ BF.ox+=BF.pdx; BF.oy+=BF.pdy; BF.pdx=0; BF.pdy=0; }
+  var vx=BF.down?BF.svx:BF.vx, vy=BF.down?BF.svy:BF.vy, sp=Math.sqrt(vx*vx+vy*vy), tx=0, ty=0;
+  if(sp>JT){ var m=Math.min(JMAX,(sp-JT)*.0022); tx=vx/sp*m; ty=vy/sp*m; }
+  BF.jvx+=(tx-BF.jx)*.1; BF.jvy+=(ty-BF.jy)*.1; BF.jvx*=.74; BF.jvy*=.74; BF.jx+=BF.jvx; BF.jy+=BF.jvy;
+  if(Math.abs(BF.jx)+Math.abs(BF.jy)+Math.abs(BF.jvx)+Math.abs(BF.jvy)>.0008) busy=true; else { BF.jx=BF.jy=BF.jvx=BF.jvy=0; }
+  if(BF.down) busy=true;
   bfFrame();
   if(busy && BF.on) BF.raf=requestAnimationFrame(bfLoop);
 }
 function bfKick(){ if(!BF.raf) BF.raf=requestAnimationFrame(bfLoop); }
 function bfStop(){ if(BF.raf) cancelAnimationFrame(BF.raf); BF.raf=0; BF.els={}; BF.on=false; }
 function bfStart(){
-  var box=$('bf'); if(!box) return; BITEMS=bItems(); BF.els={}; BF.on=true; BF.dvx=BF.dvy=0; bfFrame();
-  box.addEventListener('pointerdown',function(e){ BF.down={x:e.clientX,y:e.clientY,t:e.target.closest('.bub'),lx:e.clientX,ly:e.clientY,lt:performance.now()}; BF.moved=0; BF.vx=BF.vy=0; try{ box.setPointerCapture(e.pointerId); }catch(x){} bfKick(); });
-  box.addEventListener('pointermove',function(e){ var d=BF.down; if(!d) return; var dx=e.clientX-d.lx, dy=e.clientY-d.ly, now=performance.now(), dt=Math.max(8,now-d.lt);
-    BF.ox+=dx; BF.oy+=dy; BF.moved+=Math.abs(dx)+Math.abs(dy); BF.vx=dx*16/dt; BF.vy=dy*16/dt; BF.dvx=BF.vx; BF.dvy=BF.vy; d.lx=e.clientX; d.ly=e.clientY; d.lt=now; bfKick();
-    var hn=$('bfhint'); if(hn && BF.moved>30) hn.style.opacity=0; });
-  function up(){ var d=BF.down; BF.down=null; if(!d) return; if(BF.moved<8 && d.t){ tapBubble(d.t); return; } bfKick(); }
+  var box=$('bf'); if(!box) return; BITEMS=bItems(); BF.els={}; BF.on=true; BF.svx=BF.svy=BF.pdx=BF.pdy=0;
+  var rt=$('rtop'), rb=$('rbot'); BF.top=rt?rt.offsetHeight:0; BF.bot=rb?(box.clientHeight-rb.offsetTop):0;
+  bfFrame();
+  box.addEventListener('pointerdown',function(e){ BF.down={t:e.target.closest('.bub'),lx:e.clientX,ly:e.clientY,lt:performance.now()}; BF.moved=0; BF.vx=BF.vy=BF.svx=BF.svy=0; try{ box.setPointerCapture(e.pointerId); }catch(x){} bfKick(); });
+  box.addEventListener('pointermove',function(e){ var d=BF.down; if(!d) return; var dx=e.clientX-d.lx, dy=e.clientY-d.ly, now=performance.now(), dt=Math.max(6,now-d.lt);
+    BF.pdx+=dx; BF.pdy+=dy; BF.moved+=Math.abs(dx)+Math.abs(dy);
+    // smoothed velocity in px per 16ms frame, so one jittery event cannot trigger a wobble
+    BF.svx=BF.svx*.75+(dx*16/dt)*.25; BF.svy=BF.svy*.75+(dy*16/dt)*.25;
+    d.lx=e.clientX; d.ly=e.clientY; d.lt=now; bfKick(); });
+  function up(){ var d=BF.down; if(!d) return; BF.ox+=BF.pdx; BF.oy+=BF.pdy; BF.pdx=BF.pdy=0;
+    if(performance.now()-d.lt>80){ BF.svx=BF.svy=0; }
+    BF.vx=Math.max(-60,Math.min(60,BF.svx)); BF.vy=Math.max(-60,Math.min(60,BF.svy)); BF.down=null;
+    if(BF.moved<8 && d.t){ BF.vx=BF.vy=0; tapBubble(d.t); return; } bfKick(); }
   box.addEventListener('pointerup',up); box.addEventListener('pointercancel',function(){ BF.down=null; bfKick(); });
-  box.addEventListener('wheel',function(e){ e.preventDefault(); BF.ox-=e.deltaX; BF.oy-=e.deltaY; BF.vx=-e.deltaX*.3; BF.vy=-e.deltaY*.3; bfKick(); },{passive:false});
+  box.addEventListener('wheel',function(e){ e.preventDefault(); BF.ox-=e.deltaX; BF.oy-=e.deltaY; bfKick(); },{passive:false});
 }
 function tapBubble(el){
   el.animate && el.animate([{filter:'brightness(1)'},{filter:'brightness(1.15)'},{filter:'brightness(1)'}],{duration:220});
@@ -909,7 +929,7 @@ document.addEventListener('click',function(e){
   }
   else if(el.id==='tonext'){ idx=2; listening=true; drawCard(true); }
   else if(el.id==='nextm'){ var nid=randomScen(cur.id); stopAudio(); openS(nid); }
-  else if(el.id==='bshuffle'){ S.bseed=(S.bseed||1)+1; persist(); BF.ox+=BDX*3; BF.vx=-40; render(); bfKick(); }
+  else if(el.id==='bshuffle'){ S.bseed=(S.bseed||1)+1; persist(); render(); }
   else if(el.id==='bsurprise'){ openS(randomScen()); }
   else if(el.id==='rplay'){ listening=!listening; setPlay(); if(listening){ if(player && player.getAttribute('src') && player.currentTime>0 && !player.ended){ var pr=player.play(); if(pr&&pr.catch) pr.catch(function(){}); } else playClip(clipFor(idx)); } else stopAudio(); }
   else if(el.id==='rnext') next();
