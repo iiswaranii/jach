@@ -203,6 +203,63 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
 .reflectcard .art{flex:0 0 42%;position:relative}
 @media (min-width:700px){body{background:var(--surface2)}.app{box-shadow:0 20px 60px rgba(0,0,0,.12)}}
 @media (max-width:350px){.grid{gap:8px}.etile{min-height:132px;padding:12px}.etile .fc{width:52px;height:52px}.rbody{padding:14px 16px}}
+
+/* reels-style reader (Deepstash-like) */
+.reader{background:var(--rbg,var(--bg));color:var(--rink,var(--ink));transition:background .4s}
+.rhd{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 18px 10px}
+.rhd .rhead{flex:1;min-width:0;font-family:var(--display);font-weight:800;font-size:clamp(19px,5.6vw,23px);line-height:1.2;margin:0;color:var(--rink)}
+.rb{width:46px;height:46px;border-radius:50%;background:var(--rbtn,var(--surface));color:var(--rink);display:grid;place-items:center;flex:0 0 auto}
+.rb[disabled]{opacity:.35}
+.reader .segs{display:flex;gap:7px;padding:4px 18px 14px}
+.reader .segs span{flex:1;height:5px;border-radius:5px;background:var(--rdim);overflow:hidden;transition:flex .4s cubic-bezier(.22,.8,.24,1)}
+.reader .segs span.on{flex:3.2}
+.reader .segs span.done i{background:var(--racc)}
+.reader .segs i{display:block;height:100%;width:0;background:var(--racc);border-radius:5px}
+.stage{position:relative;flex:1;min-height:0;overflow:hidden}
+.pnl{position:absolute;left:0;right:0;top:0;height:calc(100% - 92px);overflow-y:auto;overscroll-behavior:contain;padding:4px 22px 28px;display:flex;flex-direction:column;gap:16px;will-change:transform;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pnl::-webkit-scrollbar{display:none}
+.pnl.n,.pnl.p{opacity:.38;pointer-events:none}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--racc)}
+.ptext{font-size:clamp(18px,5vw,20px);line-height:1.55;margin:0;color:var(--rink);text-wrap:pretty}
+.ptext.big{font-family:var(--display);font-weight:600;font-size:clamp(21px,6vw,24px);line-height:1.38}
+.ptext.q{font-weight:700}
+.ptext.sm{font-size:16.5px}
+.pimg{border-radius:24px;overflow:hidden;aspect-ratio:3/2;flex:0 0 auto;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.pimg svg{width:100%;height:100%}
+.reader .gur{color:var(--rink)}
+.reader .ref,.reader .note{color:var(--rink);opacity:.65}
+.reader .mean{border-left-color:var(--racc)}
+.reader .mean .k{color:var(--rink);opacity:.65}
+.reader .opt{background:var(--rcard);border-color:transparent;color:var(--rink)}
+.reader .opt b{background:var(--rbg);color:var(--rink)}
+.reader .opt.right{border-color:var(--good)}
+.reader .opt.picked{border-color:var(--warn)}
+.reader .fb{background:var(--rcard);border:0;color:var(--rink)}
+.lwrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:min(62vh,520px)}
+.lcard{position:relative;border-radius:30px;padding:22px 22px 18px;background:var(--rcard);color:var(--rink);border:3px solid var(--racc);box-shadow:0 0 0 6px color-mix(in srgb,var(--racc) 25%,transparent),0 20px 50px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:12px;width:100%}
+.lcard.big{padding:26px 24px 20px}
+.lhead{display:flex;align-items:center;gap:14px}
+.lhead b{font-family:var(--display);font-size:19px;color:var(--racc)}
+.lic{width:58px;height:58px;border-radius:50%;overflow:hidden;flex:0 0 auto;border:2px solid var(--racc)}
+.lline{height:2px;background:var(--racc);opacity:.35;border-radius:2px}
+.ltext{font-size:clamp(19px,5.4vw,22px);line-height:1.55;margin:0}
+.ltext .hl{font-style:normal;font-weight:800;color:var(--racc)}
+.lfoot{display:flex;justify-content:space-between;align-items:center;padding-top:4px}
+.lbtn{width:42px;height:42px;display:grid;place-items:center;color:var(--rink)}
+.lbtn svg{width:24px;height:26px}
+.btn.cta{background:var(--racc);color:var(--rbg);font-size:17px;padding:15px 18px;border-radius:999px;margin-top:4px}
+.reader .btn.ghost{background:var(--rcard);color:var(--rink);border:0}
+.rctl{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:28px 18px max(16px,env(safe-area-inset-bottom));background:linear-gradient(to bottom,transparent,var(--rbg) 42%);pointer-events:none}
+.rctl>*{pointer-events:auto}
+.rnav2{display:flex;gap:12px}
+.rb.lg{width:56px;height:56px}
+.ctlpill{display:flex;align-items:center;gap:6px;background:var(--rbtn);border-radius:999px;padding:5px 8px;height:56px}
+.ctlpill button{min-width:44px;height:44px;display:grid;place-items:center;color:var(--rink);font-weight:800;font-size:16px;border-radius:50%}
+.ctlpill #rplay{background:var(--racc);color:var(--rbg)}
+.ctlpill #rplay svg{width:20px;height:20px}
+.swipehint{position:absolute;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translate(-50%,10px);z-index:4;display:flex;align-items:center;gap:6px;background:var(--racc);color:var(--rbg);font-weight:800;font-size:13px;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;white-space:nowrap}
+.swipehint.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:no-preference){.swipehint.on svg{animation:bob 1.4s ease-in-out infinite}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
 @media (prefers-reduced-motion:no-preference){.rbody>*{animation:in .3s ease both}@keyframes in{from{transform:translateY(8px);opacity:.3}to{transform:none;opacity:1}}.rart svg{animation:sc 9s ease-in-out both}@keyframes sc{from{transform:scale(1.06)}to{transform:scale(1)}}}
 </style>
 </head>
@@ -216,11 +273,11 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
     <button data-tab="me"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="tb3"></span></button>
   </nav>
   <section class="reader" id="reader" aria-label="Story">
-    <div class="rtop"><div class="segs" id="segs"></div>
-      <div class="rbar"><button class="pill" id="rclose" aria-label="Close"><svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button><span class="sp" id="rtitle"><span class="rsub" id="rcat"></span></span><button class="pill" id="rlang"></button><button class="pill" id="rspeed"></button><button class="pill" id="rsave" aria-label="Save"></button></div><h2 class="rhead" id="rhead"></h2></div>
-    <div class="rart" id="rart"></div>
-    <div class="rbody" id="rbody"></div>
-    <div class="rnav"><button class="circ" id="rprev" aria-label="Back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 4l-6 6 6 6"/></svg></button><button class="circ main" id="rplay" aria-label="Play"></button><button class="circ" id="rnext" aria-label="Next"></button></div>
+    <div class="rhd"><h2 class="rhead" id="rhead"></h2><button class="rb" id="rlang" aria-label="Language"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M6 5c1 3.5 3.5 6 6.5 7.5M11 5c-1 3.5-3.5 6-7 8"/><path d="M13 21l4-9 4 9M14.4 18h5.2"/></svg></button><button class="rb" id="rclose" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+    <div class="segs" id="segs"></div>
+    <div class="stage" id="stage"></div>
+    <div class="swipehint" id="swipehint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg><span id="swipetxt"></span></div>
+    <div class="rctl"><div class="rnav2"><button class="rb lg" id="rprev" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button><button class="rb lg" id="rnext" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="ctlpill"><button id="rspeed"></button><button id="rback5" aria-label="Back 5 seconds"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v4h4"/><text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" stroke="none" font-family="sans-serif">5</text></svg></button><button id="rplay" aria-label="Play"></button></div></div>
   </section>
   <div class="sheetwrap" id="sheetwrap"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 </div>
@@ -565,11 +622,11 @@ var UI = {
  hi:{tabs:['आज','खोजें','ढूँढें','मैं'],greet:['सुप्रभात','नमस्कार','शुभ संध्या'],sub:'जपुजी साहिब के साथ कुछ पल',feel:'आज आप कैसा महसूस कर रहे हैं?',sotd:'आज की कहानी',cont:'जारी रखें',forYou:'आपके लिए',prac:'आज का छोटा अभ्यास',pracsub:'मन हो तो कीजिए। कोई हिसाब नहीं रख रहा।',trial:'<b>परीक्षण संस्करण।</b> अर्थ सरल शब्दों में लिखे गए हैं और आवाज़ कंप्यूटर से बनी है। दोनों की जाँच किसी विद्वान से होनी बाक़ी है।',
   explore:'खोजें',exsub:'अपने मन के हाल से या विषय से कहानियाँ ढूँढिए।',feelings:'भावनाएँ',topics:'विषय',stories:'कहानियाँ',story:'कहानी',forFeel:'कहानियाँ, जब मन में हो ',search:'ढूँढें',sph:'भावना, विषय या कहानी ढूँढें',drag:'कहीं भी उँगली घुमाकर देखिए',nores:'कुछ नहीं मिला। उदासी जैसी कोई भावना, या धीरज जैसा कोई शब्द लिखकर देखिए।',matches:'भावनाएँ और विषय',res:'कहानियाँ',surprise:'कोई भी कहानी',
   me:'मेरी जगह',mesub:'सिर्फ़ इसी फ़ोन में रखा है। खाते की ज़रूरत नहीं।',lang:'भाषा',theme:'रंग',themes:['अपने आप','हल्का','गहरा'],speed:'आवाज़ की गति',saved:'सहेजे हुए',nosaved:'अभी कुछ नहीं सहेजा। किसी कहानी में बुकमार्क दबाइए।',done:'पूरी की हुई',nodone:'कोई कहानी पूरी कीजिए, वह यहाँ दिखेगी।',pass:'इस संस्करण की गुरबाणी पंक्तियाँ',reset:'इस फ़ोन से मेरी प्रगति मिटाएँ',of:'में से',min:'मिनट',all:'‹ पीछे',
-  meaning:'सरल शब्दों में अर्थ',labels:['एक पल','गुरबाणी','एक साखी','समझ','रोज़ के जीवन में','यह करके देखें','आपकी बारी'],help:'क्या आज एक पाठ से ज़्यादा की ज़रूरत है?',helpt:'अगर आज का दिन बहुत भारी है',helpb:'हर दिन के लिए एक छोटा पाठ काफ़ी नहीं होता। अगर लगे कि सँभलना मुश्किल है, तो आज ही किसी भरोसे वाले से बात कीजिए: परिवार, दोस्त, अध्यापक या डॉक्टर। भारत में आप टेली-मानस हेल्पलाइन 14416 पर किसी भी समय मुफ़्त फ़ोन कर सकते हैं। नंबर अपने इलाक़े के लिए एक बार जाँच लीजिए।',ok:'बंद करें'},
+  meaning:'सरल शब्दों में अर्थ',labels:['एक पल','गुरबाणी','एक साखी','समझ','रोज़ के जीवन में','यह करके देखें','आपकी बारी','सीख'],help:'क्या आज एक पाठ से ज़्यादा की ज़रूरत है?',helpt:'अगर आज का दिन बहुत भारी है',helpb:'हर दिन के लिए एक छोटा पाठ काफ़ी नहीं होता। अगर लगे कि सँभलना मुश्किल है, तो आज ही किसी भरोसे वाले से बात कीजिए: परिवार, दोस्त, अध्यापक या डॉक्टर। भारत में आप टेली-मानस हेल्पलाइन 14416 पर किसी भी समय मुफ़्त फ़ोन कर सकते हैं। नंबर अपने इलाक़े के लिए एक बार जाँच लीजिए।',ok:'बंद करें'},
  pa:{tabs:['ਅੱਜ','ਵੇਖੋ','ਲੱਭੋ','ਮੈਂ'],greet:['ਸ਼ੁਭ ਸਵੇਰ','ਸ਼ੁਭ ਦੁਪਹਿਰ','ਸ਼ੁਭ ਸ਼ਾਮ'],sub:'ਜਪੁਜੀ ਸਾਹਿਬ ਨਾਲ ਕੁਝ ਪਲ',feel:'ਅੱਜ ਤੁਸੀਂ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰ ਰਹੇ ਹੋ?',sotd:'ਅੱਜ ਦੀ ਕਹਾਣੀ',cont:'ਜਾਰੀ ਰੱਖੋ',forYou:'ਤੁਹਾਡੇ ਲਈ',prac:'ਅੱਜ ਦਾ ਛੋਟਾ ਅਭਿਆਸ',pracsub:'ਮਨ ਹੋਵੇ ਤਾਂ ਕਰੋ। ਕੋਈ ਹਿਸਾਬ ਨਹੀਂ ਰੱਖ ਰਿਹਾ।',trial:'<b>ਪਰਖ ਵਾਲਾ ਰੂਪ।</b> ਅਰਥ ਸੌਖੇ ਸ਼ਬਦਾਂ ਵਿਚ ਲਿਖੇ ਹਨ ਤੇ ਆਵਾਜ਼ ਕੰਪਿਊਟਰ ਨਾਲ ਬਣੀ ਹੈ। ਦੋਹਾਂ ਦੀ ਜਾਂਚ ਕਿਸੇ ਵਿਦਵਾਨ ਤੋਂ ਹੋਣੀ ਬਾਕੀ ਹੈ।',
   explore:'ਵੇਖੋ',exsub:'ਆਪਣੇ ਮਨ ਦੇ ਹਾਲ ਜਾਂ ਵਿਸ਼ੇ ਨਾਲ ਕਹਾਣੀਆਂ ਲੱਭੋ।',feelings:'ਭਾਵਨਾਵਾਂ',topics:'ਵਿਸ਼ੇ',stories:'ਕਹਾਣੀਆਂ',story:'ਕਹਾਣੀ',forFeel:'ਕਹਾਣੀਆਂ, ਜਦੋਂ ਮਨ ਵਿਚ ਹੋਵੇ ',search:'ਲੱਭੋ',sph:'ਭਾਵਨਾ, ਵਿਸ਼ਾ ਜਾਂ ਕਹਾਣੀ ਲੱਭੋ',drag:'ਕਿਤੇ ਵੀ ਉਂਗਲ ਘੁਮਾ ਕੇ ਵੇਖੋ',nores:'ਕੁਝ ਨਹੀਂ ਮਿਲਿਆ। ਉਦਾਸੀ ਵਰਗੀ ਕੋਈ ਭਾਵਨਾ, ਜਾਂ ਧੀਰਜ ਵਰਗਾ ਕੋਈ ਸ਼ਬਦ ਲਿਖ ਕੇ ਵੇਖੋ।',matches:'ਭਾਵਨਾਵਾਂ ਤੇ ਵਿਸ਼ੇ',res:'ਕਹਾਣੀਆਂ',surprise:'ਕੋਈ ਵੀ ਕਹਾਣੀ',
   me:'ਮੇਰੀ ਥਾਂ',mesub:'ਸਿਰਫ਼ ਇਸੇ ਫ਼ੋਨ ਵਿਚ ਰੱਖਿਆ ਹੈ। ਖਾਤੇ ਦੀ ਲੋੜ ਨਹੀਂ।',lang:'ਭਾਸ਼ਾ',theme:'ਰੰਗ',themes:['ਆਪਣੇ ਆਪ','ਹਲਕਾ','ਗੂੜ੍ਹਾ'],speed:'ਆਵਾਜ਼ ਦੀ ਰਫ਼ਤਾਰ',saved:'ਸਾਂਭੇ ਹੋਏ',nosaved:'ਅਜੇ ਕੁਝ ਨਹੀਂ ਸਾਂਭਿਆ। ਕਿਸੇ ਕਹਾਣੀ ਵਿਚ ਬੁੱਕਮਾਰਕ ਦਬਾਓ।',done:'ਪੂਰੀਆਂ ਕੀਤੀਆਂ',nodone:'ਕੋਈ ਕਹਾਣੀ ਪੂਰੀ ਕਰੋ, ਉਹ ਇੱਥੇ ਦਿਸੇਗੀ।',pass:'ਇਸ ਰੂਪ ਦੀਆਂ ਗੁਰਬਾਣੀ ਪੰਕਤੀਆਂ',reset:'ਇਸ ਫ਼ੋਨ ਤੋਂ ਮੇਰੀ ਤਰੱਕੀ ਮਿਟਾਓ',of:'ਵਿਚੋਂ',min:'ਮਿੰਟ',all:'‹ ਪਿੱਛੇ',
-  meaning:'ਸੌਖੇ ਸ਼ਬਦਾਂ ਵਿਚ ਅਰਥ',labels:['ਇਕ ਪਲ','ਗੁਰਬਾਣੀ','ਇਕ ਸਾਖੀ','ਸਮਝ','ਰੋਜ਼ ਦੇ ਜੀਵਨ ਵਿਚ','ਇਹ ਕਰ ਕੇ ਵੇਖੋ','ਤੁਹਾਡੀ ਵਾਰੀ'],help:'ਕੀ ਅੱਜ ਇਕ ਪਾਠ ਤੋਂ ਵੱਧ ਦੀ ਲੋੜ ਹੈ?',helpt:'ਜੇ ਅੱਜ ਦਾ ਦਿਨ ਬਹੁਤ ਭਾਰਾ ਹੈ',helpb:'ਹਰ ਦਿਨ ਲਈ ਇਕ ਛੋਟਾ ਪਾਠ ਕਾਫ਼ੀ ਨਹੀਂ ਹੁੰਦਾ। ਜੇ ਲੱਗੇ ਕਿ ਸੰਭਲਣਾ ਔਖਾ ਹੈ, ਤਾਂ ਅੱਜ ਹੀ ਕਿਸੇ ਭਰੋਸੇ ਵਾਲੇ ਨਾਲ ਗੱਲ ਕਰੋ: ਪਰਿਵਾਰ, ਦੋਸਤ, ਅਧਿਆਪਕ ਜਾਂ ਡਾਕਟਰ। ਭਾਰਤ ਵਿਚ ਤੁਸੀਂ ਟੈਲੀ-ਮਾਨਸ ਹੈਲਪਲਾਈਨ 14416 ਉੱਤੇ ਕਿਸੇ ਵੀ ਵੇਲੇ ਮੁਫ਼ਤ ਫ਼ੋਨ ਕਰ ਸਕਦੇ ਹੋ। ਨੰਬਰ ਆਪਣੇ ਇਲਾਕੇ ਲਈ ਇਕ ਵਾਰ ਜਾਂਚ ਲਓ।',ok:'ਬੰਦ ਕਰੋ'}
+  meaning:'ਸੌਖੇ ਸ਼ਬਦਾਂ ਵਿਚ ਅਰਥ',labels:['ਇਕ ਪਲ','ਗੁਰਬਾਣੀ','ਇਕ ਸਾਖੀ','ਸਮਝ','ਰੋਜ਼ ਦੇ ਜੀਵਨ ਵਿਚ','ਇਹ ਕਰ ਕੇ ਵੇਖੋ','ਤੁਹਾਡੀ ਵਾਰੀ','ਸਿੱਖਿਆ'],help:'ਕੀ ਅੱਜ ਇਕ ਪਾਠ ਤੋਂ ਵੱਧ ਦੀ ਲੋੜ ਹੈ?',helpt:'ਜੇ ਅੱਜ ਦਾ ਦਿਨ ਬਹੁਤ ਭਾਰਾ ਹੈ',helpb:'ਹਰ ਦਿਨ ਲਈ ਇਕ ਛੋਟਾ ਪਾਠ ਕਾਫ਼ੀ ਨਹੀਂ ਹੁੰਦਾ। ਜੇ ਲੱਗੇ ਕਿ ਸੰਭਲਣਾ ਔਖਾ ਹੈ, ਤਾਂ ਅੱਜ ਹੀ ਕਿਸੇ ਭਰੋਸੇ ਵਾਲੇ ਨਾਲ ਗੱਲ ਕਰੋ: ਪਰਿਵਾਰ, ਦੋਸਤ, ਅਧਿਆਪਕ ਜਾਂ ਡਾਕਟਰ। ਭਾਰਤ ਵਿਚ ਤੁਸੀਂ ਟੈਲੀ-ਮਾਨਸ ਹੈਲਪਲਾਈਨ 14416 ਉੱਤੇ ਕਿਸੇ ਵੀ ਵੇਲੇ ਮੁਫ਼ਤ ਫ਼ੋਨ ਕਰ ਸਕਦੇ ਹੋ। ਨੰਬਰ ਆਪਣੇ ਇਲਾਕੇ ਲਈ ਇਕ ਵਾਰ ਜਾਂਚ ਲਓ।',ok:'ਬੰਦ ਕਰੋ'}
 };
 var LCOL = ['#FFE08A','#FFD0A8','#BFE9D2','#CFD4FF','#CFE9FF','#D6F09A','#F0C7F0'];
 var LANGS = [['en','EN','English'],['hi','हिं','हिंदी'],['pa','ਪੰ','ਪੰਜਾਬੀ']];
@@ -609,6 +666,8 @@ var ICON = {
   sun:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>',
   tick:'<svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg>',
   search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>',
+  share:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l7 6-7 6v-3.5c-5 0-8 1.5-11 5 1-5.5 4-9.5 11-10.5z"/></svg>',
+  share:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l7 6-7 6v-3.5c-5 0-8 1.5-11 5 1-5.5 4-9.5 11-10.5z"/></svg>',
   shuffle:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#221E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>'
 };
 
@@ -619,9 +678,9 @@ function emoChip(e){ return '<button class="chip" style="background:'+e.col+'" d
 
 /* ---------------- extra strings ---------------- */
 var UI2={
- en:{tabs:['Today','Explore','Reflect','Me'],reflect:'Reflect',rsub:'Real moments from everyday life. What would you do?',allc:'All',shuffle:'Shuffle',surprise:'Surprise me',drag:'Drag anywhere, tap a bubble',reflected:'moments reflected',situation:'The situation',yourturn:'What would you do?',reflection:'Reflection',gurbani:'Gurbani',sakhi:'A sakhi',think:'Thinking it through',nextm:'Next moment',enOnly:'This moment is in English for now. Hindi and Punjabi are on the way.',rcardT:'What would you do?',rcardS:'Real-life moments to reflect on, with friends, family, nature and the city',sph:'Search stories, feelings, moments',moments:'Moments',cont2:'Continue'},
- hi:{tabs:['आज','खोजें','सोचें','मैं'],reflect:'सोचें',rsub:'रोज़ की ज़िंदगी के असली पल। आप क्या करेंगे?',allc:'सभी',shuffle:'मिलाएँ',surprise:'कोई भी पल',drag:'कहीं भी उँगली घुमाइए, बुलबुला दबाइए',reflected:'पल सोचे',situation:'स्थिति',yourturn:'आप क्या करेंगे?',reflection:'विचार',gurbani:'गुरबाणी',sakhi:'एक साखी',think:'गहराई से समझें',nextm:'अगला पल',enOnly:'यह पल अभी अंग्रेज़ी में है। हिंदी और पंजाबी जल्द आएँगी।',rcardT:'आप क्या करेंगे?',rcardS:'दोस्त, परिवार, प्रकृति और शहर के असली पल',sph:'कहानी, भावना या पल ढूँढें',moments:'पल',cont2:'आगे'},
- pa:{tabs:['ਅੱਜ','ਵੇਖੋ','ਸੋਚੋ','ਮੈਂ'],reflect:'ਸੋਚੋ',rsub:'ਰੋਜ਼ ਦੀ ਜ਼ਿੰਦਗੀ ਦੇ ਅਸਲ ਪਲ। ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',allc:'ਸਾਰੇ',shuffle:'ਰਲਾਓ',surprise:'ਕੋਈ ਵੀ ਪਲ',drag:'ਕਿਤੇ ਵੀ ਉਂਗਲ ਘੁਮਾਓ, ਬੁਲਬੁਲਾ ਦਬਾਓ',reflected:'ਪਲ ਸੋਚੇ',situation:'ਹਾਲਾਤ',yourturn:'ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',reflection:'ਵਿਚਾਰ',gurbani:'ਗੁਰਬਾਣੀ',sakhi:'ਇਕ ਸਾਖੀ',think:'ਡੂੰਘਾਈ ਨਾਲ ਸਮਝੋ',nextm:'ਅਗਲਾ ਪਲ',enOnly:'ਇਹ ਪਲ ਅਜੇ ਅੰਗਰੇਜ਼ੀ ਵਿਚ ਹੈ। ਹਿੰਦੀ ਤੇ ਪੰਜਾਬੀ ਛੇਤੀ ਆਉਣਗੀਆਂ।',rcardT:'ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',rcardS:'ਦੋਸਤ, ਪਰਿਵਾਰ, ਕੁਦਰਤ ਤੇ ਸ਼ਹਿਰ ਦੇ ਅਸਲ ਪਲ',sph:'ਕਹਾਣੀ, ਭਾਵਨਾ ਜਾਂ ਪਲ ਲੱਭੋ',moments:'ਪਲ',cont2:'ਅੱਗੇ'}
+ en:{tabs:['Today','Explore','Reflect','Me'],reflect:'Reflect',rsub:'Real moments from everyday life. What would you do?',allc:'All',shuffle:'Shuffle',surprise:'Surprise me',drag:'Drag anywhere, tap a bubble',reflected:'moments reflected',situation:'The situation',yourturn:'What would you do?',reflection:'Reflection',gurbani:'Gurbani',sakhi:'A sakhi',think:'Thinking it through',nextm:'Next moment',enOnly:'This moment is in English for now. Hindi and Punjabi are on the way.',rcardT:'What would you do?',rcardS:'Real-life moments to reflect on, with friends, family, nature and the city',sph:'Search stories, feelings, moments',moments:'Moments',cont2:'Continue',swipe:'Swipe up for the next card'},
+ hi:{tabs:['आज','खोजें','सोचें','मैं'],reflect:'सोचें',rsub:'रोज़ की ज़िंदगी के असली पल। आप क्या करेंगे?',allc:'सभी',shuffle:'मिलाएँ',surprise:'कोई भी पल',drag:'कहीं भी उँगली घुमाइए, बुलबुला दबाइए',reflected:'पल सोचे',situation:'स्थिति',yourturn:'आप क्या करेंगे?',reflection:'विचार',gurbani:'गुरबाणी',sakhi:'एक साखी',think:'गहराई से समझें',nextm:'अगला पल',enOnly:'यह पल अभी अंग्रेज़ी में है। हिंदी और पंजाबी जल्द आएँगी।',rcardT:'आप क्या करेंगे?',rcardS:'दोस्त, परिवार, प्रकृति और शहर के असली पल',sph:'कहानी, भावना या पल ढूँढें',moments:'पल',cont2:'आगे',swipe:'अगले कार्ड के लिए ऊपर स्वाइप करें'},
+ pa:{tabs:['ਅੱਜ','ਵੇਖੋ','ਸੋਚੋ','ਮੈਂ'],reflect:'ਸੋਚੋ',rsub:'ਰੋਜ਼ ਦੀ ਜ਼ਿੰਦਗੀ ਦੇ ਅਸਲ ਪਲ। ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',allc:'ਸਾਰੇ',shuffle:'ਰਲਾਓ',surprise:'ਕੋਈ ਵੀ ਪਲ',drag:'ਕਿਤੇ ਵੀ ਉਂਗਲ ਘੁਮਾਓ, ਬੁਲਬੁਲਾ ਦਬਾਓ',reflected:'ਪਲ ਸੋਚੇ',situation:'ਹਾਲਾਤ',yourturn:'ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',reflection:'ਵਿਚਾਰ',gurbani:'ਗੁਰਬਾਣੀ',sakhi:'ਇਕ ਸਾਖੀ',think:'ਡੂੰਘਾਈ ਨਾਲ ਸਮਝੋ',nextm:'ਅਗਲਾ ਪਲ',enOnly:'ਇਹ ਪਲ ਅਜੇ ਅੰਗਰੇਜ਼ੀ ਵਿਚ ਹੈ। ਹਿੰਦੀ ਤੇ ਪੰਜਾਬੀ ਛੇਤੀ ਆਉਣਗੀਆਂ।',rcardT:'ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?',rcardS:'ਦੋਸਤ, ਪਰਿਵਾਰ, ਕੁਦਰਤ ਤੇ ਸ਼ਹਿਰ ਦੇ ਅਸਲ ਪਲ',sph:'ਕਹਾਣੀ, ਭਾਵਨਾ ਜਾਂ ਪਲ ਲੱਭੋ',moments:'ਪਲ',cont2:'ਅੱਗੇ',swipe:'ਅਗਲੇ ਕਾਰਡ ਲਈ ਉੱਪਰ ਸਵਾਈਪ ਕਰੋ'}
 };
 for(var L2 in UI2) for(var k2 in UI2[L2]) UI[L2][k2]=UI2[L2][k2];
 if(!S.rdone) S.rdone=[]; if(!S.ranswers) S.ranswers={}; if(!S.bseed) S.bseed=1;
@@ -788,14 +847,18 @@ function randomScen(except){
 }
 window.addEventListener('resize',function(){ if(BF.on) bfFrame(); });
 
-/* ---------------- reader + narration (stories and moments) ---------------- */
-var cur=null, mode='story', idx=0, listening=false, player=null, timer=null, clip=-1;
-function NC(){ return mode==='sc'?3:NCARDS; }
-function clipFor(i){ return mode==='sc'?[0,1,4][i]:i; }
-function isFb(n){ return mode==='sc'?(n===2||n===3):(n>=NCARDS); }
+/* ---------------- reader: reels-style story player (stories and moments) ---------------- */
+var LESSONS = {"en": {"anger1": "Anger is fast; [[wisdom is a pause]]. Let self-control be your workshop and patience your goldsmith. Before you reply, breathe, wait, and let the heat cool. Then speak in a way you will not regret tomorrow.", "ego1": "[[No success is yours alone.]] Teachers, family, timing and countless unseen hands helped you get here. Remembering the bigger order keeps the I, I quiet, and lets you celebrate with gratitude instead of pride.", "comp1": "[[No one is high and no one is low.]] Comparison steals joy and hides people from us. Measure yourself against who you were yesterday, and give everyone, from the boss to the cleaner, the same respect.", "accept1": "[[Do your part fully, then let go of the rest.]] Much of life is outside your hands. Walking with hukam means effort without anxiety: act well where you can, and accept calmly where you cannot.", "content1": "[[Enough is a feeling, not a number.]] Contentment means honest effort and simple gratitude for what you already have. Chasing more never ends. Noticing enough lets peace begin today.", "listen1": "[[Listening heals more than advice.]] When someone speaks, give them your full attention instead of planning your reply. Truly listening, to people and to the Guru's word, washes away pain and misunderstanding.", "habit1": "[[Small things done daily become who you are.]] Like Amar Das carrying water every dawn, a few calm minutes each morning shape the mind more than rare big efforts ever can.", "action1": "[[You reap what you sow.]] Your words and actions are seeds. Plant honesty, kindness and effort today, and the harvest will be yours. No one else can plant your field for you.", "hard1": "[[Hard days are part of life, not the end of it.]] Pain comes to everyone. Accept the day, reach out to someone who cares, do one small kind thing, and trust that heavy seasons pass.", "kind1": "[[Without fear, without enmity.]] Seeing the same light in everyone means helping without asking whose side they are on, just as Bhai Kanhaiya gave water to every wounded soldier.", "mind1": "[[Win your own mind, and you win the world.]] A restless mind runs to worries and screens. Gently bring it back to the present, again and again. That quiet practice is the real victory.", "nature1": "[[Air is our teacher, water our father, earth our mother.]] Treat nature like family: waste less, pollute nothing, and pause each day to notice the sky, trees and water that keep us alive.", "purpose1": "[[Truth is built one honest choice at a time.]] The wall of small lies grows brick by brick, and it falls the same way. Choose honesty in little things, and your whole life becomes truthful.", "guilt1": "[[Mistakes can be washed clean.]] Guilt is a signal, not a sentence. Admit the wrong, say sorry, make amends and change the habit. Love and honest change wash the mind like water washes cloth.", "joy1": "[[Joy grows when it is shared.]] Those whose hearts turn to the One stay in bloom. Celebrate your good moments, laugh, sing, and let others into your happiness. Shared joy doubles.", "lonely1": "[[You are never outside the circle.]] All beings have one Giver, so no one is truly alone. When loneliness comes, reach out to one person, and remember you belong to a much larger family.", "loved1": "[[You are valued for who you are, not for what you produce.]] Loving eyes turned mud into saffron. Accept that you matter, and look at others with the same loving eyes."}, "hi": {"anger1": "गुस्सा तेज़ होता है; [[समझदारी एक ठहराव है]]। संयम को अपनी कार्यशाला और धीरज को अपना सुनार बनाइए। जवाब देने से पहले साँस लीजिए, रुकिए और गर्मी को ठंडा होने दीजिए। फिर ऐसे बोलिए कि कल पछताना न पड़े।", "ego1": "[[कोई भी सफलता अकेले आपकी नहीं होती।]] अध्यापक, परिवार, सही समय और अनगिनत अनदेखे हाथों ने आपको यहाँ तक पहुँचाया। बड़े हुकम को याद रखने से मैं, मैं शांत रहता है और आप घमंड की जगह शुक्राने से खुशी मनाते हैं।", "comp1": "[[न कोई ऊँचा है, न कोई नीचा।]] तुलना खुशी छीन लेती है और लोगों को हमसे छिपा देती है। खुद को कल वाले खुद से नापिए, और मालिक से लेकर सफ़ाई करने वाले तक, सबको एक जैसा सम्मान दीजिए।", "accept1": "[[अपना हिस्सा पूरे मन से कीजिए, बाक़ी छोड़ दीजिए।]] ज़िंदगी का बहुत कुछ हमारे हाथ में नहीं है। हुकम के साथ चलना यानी बिना बेचैनी के मेहनत: जहाँ हो सके अच्छा कीजिए, जहाँ न हो सके शांति से मान लीजिए।", "content1": "[[काफ़ी होना एक एहसास है, कोई गिनती नहीं।]] संतोख का मतलब है ईमानदार मेहनत और जो है उसके लिए सीधा-सा शुक्राना। और ज़्यादा की दौड़ कभी ख़त्म नहीं होती। काफ़ी को पहचानने से शांति आज ही शुरू हो जाती है।", "listen1": "[[सुनना सलाह से ज़्यादा भरता है।]] जब कोई बोले, तो जवाब सोचने की जगह पूरा ध्यान उसे दीजिए। लोगों को और गुरु की बाणी को सच में सुनने से दुख और ग़लतफ़हमी धुल जाती हैं।", "habit1": "[[रोज़ की छोटी बातें ही आपकी पहचान बनती हैं।]] जैसे अमरदास जी हर सुबह पानी लाते रहे, वैसे ही हर सुबह के कुछ शांत मिनट मन को उतना गढ़ते हैं जितना कभी-कभार की बड़ी कोशिश कभी नहीं गढ़ सकती।", "action1": "[[जो बोते हैं, वही काटते हैं।]] आपके शब्द और काम बीज हैं। आज ईमानदारी, दया और मेहनत बोइए, फ़सल आपकी होगी। आपका खेत कोई और नहीं बो सकता।", "hard1": "[[कठिन दिन ज़िंदगी का हिस्सा हैं, उसका अंत नहीं।]] दुख सबके पास आता है। दिन को स्वीकार कीजिए, किसी अपने से बात कीजिए, एक छोटा अच्छा काम कीजिए, और भरोसा रखिए कि भारी मौसम बीत जाते हैं।", "kind1": "[[निरभउ, निरवैर: बिना डर, बिना दुश्मनी।]] सबमें एक ही ज्योति देखने का मतलब है बिना पूछे मदद करना कि कौन किस तरफ़ है, जैसे भाई घनैया ने हर घायल सिपाही को पानी पिलाया।", "mind1": "[[मन जीत लिया, तो जग जीत लिया।]] बेचैन मन चिंताओं और स्क्रीन की ओर भागता है। उसे प्यार से बार-बार वर्तमान में वापस लाइए। यही शांत अभ्यास असली जीत है।", "nature1": "[[हवा गुरु है, पानी पिता है, धरती माता है।]] प्रकृति को परिवार की तरह रखिए: कम बर्बाद कीजिए, कुछ भी गंदा मत कीजिए, और रोज़ एक पल रुककर आसमान, पेड़ और पानी को देखिए जो हमें ज़िंदा रखते हैं।", "purpose1": "[[सच एक-एक ईमानदार फ़ैसले से बनता है।]] छोटे झूठों की दीवार ईंट-ईंट से बनती है और वैसे ही गिरती है। छोटी बातों में ईमानदारी चुनिए, पूरी ज़िंदगी सच्ची हो जाएगी।", "guilt1": "[[ग़लतियाँ धोई जा सकती हैं।]] पछतावा एक इशारा है, सज़ा नहीं। ग़लती मानिए, माफ़ी माँगिए, भरपाई कीजिए और आदत बदलिए। प्यार और सच्चा बदलाव मन को ऐसे धोते हैं जैसे पानी कपड़े को।", "joy1": "[[ख़ुशी बाँटने से बढ़ती है।]] जिनका मन एक से जुड़ा है, वे सदा खिले रहते हैं। अपने अच्छे पलों का जश्न मनाइए, हँसिए, गाइए, और दूसरों को भी अपनी ख़ुशी में शामिल कीजिए। बाँटी हुई ख़ुशी दुगनी होती है।", "lonely1": "[[आप कभी दायरे से बाहर नहीं हैं।]] सब जीवों का एक ही दाता है, इसलिए कोई सच में अकेला नहीं। जब अकेलापन आए, तो किसी एक इंसान से संपर्क कीजिए, और याद रखिए कि आप एक बहुत बड़े परिवार का हिस्सा हैं।", "loved1": "[[आपकी क़ीमत आप ख़ुद हैं, आपका काम नहीं।]] प्यार भरी आँखों ने कीचड़ को केसर बना दिया। मान लीजिए कि आप मायने रखते हैं, और दूसरों को भी उन्हीं प्यार भरी आँखों से देखिए।"}, "pa": {"anger1": "ਗੁੱਸਾ ਤੇਜ਼ ਹੁੰਦਾ ਹੈ; [[ਸਿਆਣਪ ਇਕ ਠਹਿਰਾਅ ਹੈ]]। ਜਤ ਨੂੰ ਆਪਣੀ ਕਾਰਜਸ਼ਾਲਾ ਤੇ ਧੀਰਜ ਨੂੰ ਆਪਣਾ ਸੁਨਿਆਰ ਬਣਾਓ। ਜਵਾਬ ਦੇਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਹ ਲਓ, ਰੁਕੋ ਤੇ ਗਰਮੀ ਨੂੰ ਠੰਢਾ ਹੋਣ ਦਿਓ। ਫਿਰ ਇਉਂ ਬੋਲੋ ਕਿ ਕੱਲ੍ਹ ਪਛਤਾਉਣਾ ਨਾ ਪਵੇ।", "ego1": "[[ਕੋਈ ਵੀ ਕਾਮਯਾਬੀ ਇਕੱਲੀ ਤੁਹਾਡੀ ਨਹੀਂ ਹੁੰਦੀ।]] ਅਧਿਆਪਕ, ਪਰਿਵਾਰ, ਸਹੀ ਸਮਾਂ ਤੇ ਅਣਗਿਣਤ ਅਣਦਿਸਦੇ ਹੱਥਾਂ ਨੇ ਤੁਹਾਨੂੰ ਇੱਥੇ ਤਕ ਪਹੁੰਚਾਇਆ। ਵੱਡੇ ਹੁਕਮ ਨੂੰ ਯਾਦ ਰੱਖਣ ਨਾਲ ਹਉਮੈ ਸ਼ਾਂਤ ਰਹਿੰਦੀ ਹੈ ਤੇ ਤੁਸੀਂ ਘਮੰਡ ਦੀ ਥਾਂ ਸ਼ੁਕਰਾਨੇ ਨਾਲ ਖ਼ੁਸ਼ੀ ਮਨਾਉਂਦੇ ਹੋ।", "comp1": "[[ਨਾ ਕੋਈ ਉੱਚਾ ਹੈ, ਨਾ ਕੋਈ ਨੀਵਾਂ।]] ਤੁਲਨਾ ਖ਼ੁਸ਼ੀ ਖੋਹ ਲੈਂਦੀ ਹੈ ਤੇ ਲੋਕਾਂ ਨੂੰ ਸਾਡੇ ਤੋਂ ਲੁਕਾ ਦਿੰਦੀ ਹੈ। ਆਪਣੇ ਆਪ ਨੂੰ ਕੱਲ੍ਹ ਵਾਲੇ ਆਪ ਨਾਲ ਮਿਣੋ, ਤੇ ਮਾਲਕ ਤੋਂ ਲੈ ਕੇ ਸਫ਼ਾਈ ਕਰਨ ਵਾਲੇ ਤਕ, ਸਭ ਨੂੰ ਇਕੋ ਜਿਹਾ ਆਦਰ ਦਿਓ।", "accept1": "[[ਆਪਣਾ ਹਿੱਸਾ ਪੂਰੇ ਮਨ ਨਾਲ ਕਰੋ, ਬਾਕੀ ਛੱਡ ਦਿਓ।]] ਜ਼ਿੰਦਗੀ ਦਾ ਬਹੁਤ ਕੁਝ ਸਾਡੇ ਹੱਥ ਵਿਚ ਨਹੀਂ। ਹੁਕਮ ਨਾਲ ਤੁਰਨਾ ਯਾਨੀ ਬਿਨਾਂ ਬੇਚੈਨੀ ਦੇ ਮਿਹਨਤ: ਜਿੱਥੇ ਹੋ ਸਕੇ ਚੰਗਾ ਕਰੋ, ਜਿੱਥੇ ਨਾ ਹੋ ਸਕੇ ਸ਼ਾਂਤੀ ਨਾਲ ਮੰਨ ਲਓ।", "content1": "[[ਕਾਫ਼ੀ ਹੋਣਾ ਇਕ ਅਹਿਸਾਸ ਹੈ, ਕੋਈ ਗਿਣਤੀ ਨਹੀਂ।]] ਸੰਤੋਖ ਦਾ ਅਰਥ ਹੈ ਇਮਾਨਦਾਰ ਮਿਹਨਤ ਤੇ ਜੋ ਹੈ ਉਸ ਲਈ ਸਿੱਧਾ ਜਿਹਾ ਸ਼ੁਕਰਾਨਾ। ਹੋਰ ਦੀ ਦੌੜ ਕਦੇ ਨਹੀਂ ਮੁੱਕਦੀ। ਕਾਫ਼ੀ ਨੂੰ ਪਛਾਣਨ ਨਾਲ ਸ਼ਾਂਤੀ ਅੱਜ ਹੀ ਸ਼ੁਰੂ ਹੋ ਜਾਂਦੀ ਹੈ।", "listen1": "[[ਸੁਣਨਾ ਸਲਾਹ ਨਾਲੋਂ ਵੱਧ ਭਰਦਾ ਹੈ।]] ਜਦੋਂ ਕੋਈ ਬੋਲੇ, ਤਾਂ ਜਵਾਬ ਸੋਚਣ ਦੀ ਥਾਂ ਪੂਰਾ ਧਿਆਨ ਉਸ ਨੂੰ ਦਿਓ। ਲੋਕਾਂ ਨੂੰ ਤੇ ਗੁਰੂ ਦੀ ਬਾਣੀ ਨੂੰ ਸੱਚਮੁੱਚ ਸੁਣਨ ਨਾਲ ਦੁੱਖ ਤੇ ਗ਼ਲਤਫ਼ਹਿਮੀ ਧੁਲ ਜਾਂਦੇ ਹਨ।", "habit1": "[[ਰੋਜ਼ ਦੀਆਂ ਛੋਟੀਆਂ ਗੱਲਾਂ ਹੀ ਤੁਹਾਡੀ ਪਛਾਣ ਬਣਦੀਆਂ ਹਨ।]] ਜਿਵੇਂ ਅਮਰਦਾਸ ਜੀ ਹਰ ਸਵੇਰ ਪਾਣੀ ਲਿਆਉਂਦੇ ਰਹੇ, ਉਵੇਂ ਹੀ ਹਰ ਸਵੇਰ ਦੇ ਕੁਝ ਸ਼ਾਂਤ ਮਿੰਟ ਮਨ ਨੂੰ ਉਸ ਤੋਂ ਵੱਧ ਘੜਦੇ ਹਨ ਜਿੰਨਾ ਕਦੇ-ਕਦਾਈਂ ਦੀ ਵੱਡੀ ਕੋਸ਼ਿਸ਼।", "action1": "[[ਜੋ ਬੀਜਦੇ ਹਾਂ, ਉਹੀ ਵੱਢਦੇ ਹਾਂ।]] ਤੁਹਾਡੇ ਸ਼ਬਦ ਤੇ ਕੰਮ ਬੀਜ ਹਨ। ਅੱਜ ਇਮਾਨਦਾਰੀ, ਦਇਆ ਤੇ ਮਿਹਨਤ ਬੀਜੋ, ਫ਼ਸਲ ਤੁਹਾਡੀ ਹੋਵੇਗੀ। ਤੁਹਾਡਾ ਖੇਤ ਕੋਈ ਹੋਰ ਨਹੀਂ ਬੀਜ ਸਕਦਾ।", "hard1": "[[ਔਖੇ ਦਿਨ ਜ਼ਿੰਦਗੀ ਦਾ ਹਿੱਸਾ ਹਨ, ਉਸ ਦਾ ਅੰਤ ਨਹੀਂ।]] ਦੁੱਖ ਸਭ ਕੋਲ ਆਉਂਦਾ ਹੈ। ਦਿਨ ਨੂੰ ਪਰਵਾਨ ਕਰੋ, ਕਿਸੇ ਆਪਣੇ ਨਾਲ ਗੱਲ ਕਰੋ, ਇਕ ਛੋਟਾ ਚੰਗਾ ਕੰਮ ਕਰੋ, ਤੇ ਭਰੋਸਾ ਰੱਖੋ ਕਿ ਭਾਰੇ ਮੌਸਮ ਲੰਘ ਜਾਂਦੇ ਹਨ।", "kind1": "[[ਨਿਰਭਉ, ਨਿਰਵੈਰ: ਬਿਨਾਂ ਡਰ, ਬਿਨਾਂ ਵੈਰ।]] ਸਭ ਵਿਚ ਇਕੋ ਜੋਤ ਵੇਖਣ ਦਾ ਅਰਥ ਹੈ ਬਿਨਾਂ ਪੁੱਛੇ ਮਦਦ ਕਰਨਾ ਕਿ ਕੌਣ ਕਿਸ ਪਾਸੇ ਹੈ, ਜਿਵੇਂ ਭਾਈ ਘਨੱਈਆ ਨੇ ਹਰ ਜ਼ਖ਼ਮੀ ਸਿਪਾਹੀ ਨੂੰ ਪਾਣੀ ਪਿਲਾਇਆ।", "mind1": "[[ਮਨ ਜਿੱਤਿਆ ਤਾਂ ਜਗ ਜਿੱਤਿਆ।]] ਬੇਚੈਨ ਮਨ ਫ਼ਿਕਰਾਂ ਤੇ ਸਕਰੀਨਾਂ ਵੱਲ ਭੱਜਦਾ ਹੈ। ਉਸ ਨੂੰ ਪਿਆਰ ਨਾਲ ਵਾਰ-ਵਾਰ ਵਰਤਮਾਨ ਵਿਚ ਵਾਪਸ ਲਿਆਓ। ਇਹੀ ਸ਼ਾਂਤ ਅਭਿਆਸ ਅਸਲ ਜਿੱਤ ਹੈ।", "nature1": "[[ਪਵਣੁ ਗੁਰੂ, ਪਾਣੀ ਪਿਤਾ, ਧਰਤੀ ਮਾਤਾ।]] ਕੁਦਰਤ ਨੂੰ ਪਰਿਵਾਰ ਵਾਂਗ ਸਾਂਭੋ: ਘੱਟ ਬਰਬਾਦ ਕਰੋ, ਕੁਝ ਵੀ ਗੰਦਾ ਨਾ ਕਰੋ, ਤੇ ਰੋਜ਼ ਇਕ ਪਲ ਰੁਕ ਕੇ ਅਸਮਾਨ, ਰੁੱਖਾਂ ਤੇ ਪਾਣੀ ਨੂੰ ਵੇਖੋ ਜੋ ਸਾਨੂੰ ਜਿਊਂਦਾ ਰੱਖਦੇ ਹਨ।", "purpose1": "[[ਸੱਚ ਇਕ-ਇਕ ਇਮਾਨਦਾਰ ਫ਼ੈਸਲੇ ਨਾਲ ਬਣਦਾ ਹੈ।]] ਛੋਟੇ ਝੂਠਾਂ ਦੀ ਕੰਧ ਇੱਟ-ਇੱਟ ਨਾਲ ਬਣਦੀ ਹੈ ਤੇ ਉਵੇਂ ਹੀ ਡਿੱਗਦੀ ਹੈ। ਛੋਟੀਆਂ ਗੱਲਾਂ ਵਿਚ ਇਮਾਨਦਾਰੀ ਚੁਣੋ, ਸਾਰੀ ਜ਼ਿੰਦਗੀ ਸੱਚੀ ਹੋ ਜਾਵੇਗੀ।", "guilt1": "[[ਗ਼ਲਤੀਆਂ ਧੋਤੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।]] ਪਛਤਾਵਾ ਇਕ ਇਸ਼ਾਰਾ ਹੈ, ਸਜ਼ਾ ਨਹੀਂ। ਗ਼ਲਤੀ ਮੰਨੋ, ਮਾਫ਼ੀ ਮੰਗੋ, ਭਰਪਾਈ ਕਰੋ ਤੇ ਆਦਤ ਬਦਲੋ। ਪਿਆਰ ਤੇ ਸੱਚਾ ਬਦਲਾਅ ਮਨ ਨੂੰ ਇਉਂ ਧੋਂਦੇ ਹਨ ਜਿਵੇਂ ਪਾਣੀ ਕੱਪੜੇ ਨੂੰ।", "joy1": "[[ਖ਼ੁਸ਼ੀ ਵੰਡਣ ਨਾਲ ਵਧਦੀ ਹੈ।]] ਜਿਨ੍ਹਾਂ ਦਾ ਮਨ ਇਕ ਨਾਲ ਜੁੜਿਆ ਹੈ, ਉਹ ਸਦਾ ਖਿੜੇ ਰਹਿੰਦੇ ਹਨ। ਆਪਣੇ ਚੰਗੇ ਪਲਾਂ ਦੀ ਖ਼ੁਸ਼ੀ ਮਨਾਓ, ਹੱਸੋ, ਗਾਓ, ਤੇ ਹੋਰਾਂ ਨੂੰ ਵੀ ਆਪਣੀ ਖ਼ੁਸ਼ੀ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ। ਵੰਡੀ ਹੋਈ ਖ਼ੁਸ਼ੀ ਦੁੱਗਣੀ ਹੁੰਦੀ ਹੈ।", "lonely1": "[[ਤੁਸੀਂ ਕਦੇ ਘੇਰੇ ਤੋਂ ਬਾਹਰ ਨਹੀਂ।]] ਸਭ ਜੀਆਂ ਦਾ ਇਕੋ ਦਾਤਾ ਹੈ, ਇਸ ਲਈ ਕੋਈ ਸੱਚਮੁੱਚ ਇਕੱਲਾ ਨਹੀਂ। ਜਦੋਂ ਇਕੱਲਾਪਣ ਆਵੇ, ਤਾਂ ਕਿਸੇ ਇਕ ਇਨਸਾਨ ਨਾਲ ਸੰਪਰਕ ਕਰੋ, ਤੇ ਯਾਦ ਰੱਖੋ ਕਿ ਤੁਸੀਂ ਇਕ ਬਹੁਤ ਵੱਡੇ ਪਰਿਵਾਰ ਦਾ ਹਿੱਸਾ ਹੋ।", "loved1": "[[ਤੁਹਾਡੀ ਕੀਮਤ ਤੁਸੀਂ ਆਪ ਹੋ, ਤੁਹਾਡਾ ਕੰਮ ਨਹੀਂ।]] ਪਿਆਰ ਭਰੀਆਂ ਅੱਖਾਂ ਨੇ ਚਿੱਕੜ ਨੂੰ ਕੇਸਰ ਬਣਾ ਦਿੱਤਾ। ਮੰਨ ਲਓ ਕਿ ਤੁਸੀਂ ਮਾਇਨੇ ਰੱਖਦੇ ਹੋ, ਤੇ ਹੋਰਾਂ ਨੂੰ ਵੀ ਉਨ੍ਹਾਂ ਹੀ ਪਿਆਰ ਭਰੀਆਂ ਅੱਖਾਂ ਨਾਲ ਵੇਖੋ।"}};
+var cur=null, mode='story', idx=0, listening=false, player=null, timer=null, clip=-1, anim=false;
+var QI_STORY=6, NSTORY=8;
+function NC(){ return mode==='sc'?3:NSTORY; }
+function QI(){ return mode==='sc'?1:QI_STORY; }
+function clipFor(i){ return mode==='sc'?[0,1,4][i]:(i<7?i:9); }
+function isFb(n){ return mode==='sc'?(n===2||n===3):(n===7||n===8); }
+function answered(){ return (mode==='sc'?S.ranswers:S.answers)[cur.id]!==undefined; }
 function apath(n){ return mode==='sc'?'audio/sc/'+cur.id+'-'+n+'.mp3':'audio/'+S.lang+'/'+cur.id+'-'+n+'.mp3'; }
 function clearTimer(){ if(timer){ clearTimeout(timer); timer=null; } }
-function advanceLater(at){ clearTimer(); timer=setTimeout(function(){ if(listening && cur && idx===at){ idx++; drawCard(true); } },PAUSE_MS); }
+function advanceLater(at){ clearTimer(); timer=setTimeout(function(){ if(listening && cur && idx===at && !anim) go(1,true); },PAUSE_MS); }
 function ensurePlayer(){
   if(player) return;
   player=new Audio(); player.preload='auto';
@@ -804,21 +867,17 @@ function ensurePlayer(){
     if(clip===clipFor(idx)) setFill(1);
     if(!listening || !cur) return;
     if(clip===clipFor(idx)){
-      var waitAnswer = (mode==='sc' && idx===1 && S.ranswers[cur.id]===undefined);
-      if(idx<NC()-1 && !waitAnswer) advanceLater(idx);
+      if(idx<NC()-1 && !(idx===QI() && !answered())) advanceLater(idx);
       else if(idx===NC()-1){ listening=false; setPlay(); }
-    } else if(isFb(clip)){
-      if(mode==='sc' && idx===1) advanceLater(1); else { listening=false; setPlay(); }
-    }
+    } else if(isFb(clip)){ if(idx===QI()) advanceLater(idx); }
   });
   player.addEventListener('error',function(){
     if(!player.getAttribute('src') || !listening || !cur) return;
-    if(clip!==clipFor(idx)){ if(mode==='sc' && isFb(clip) && idx===1) advanceLater(1); else { listening=false; setPlay(); } return; }
-    // no narration for this card yet: allow reading time, then carry on
-    var words=($('rbody').innerText||'').split(/\s+/).length, ms=Math.max(4000,words*330), t0=Date.now(), at=idx;
+    if(clip!==clipFor(idx)){ if(isFb(clip) && idx===QI()) advanceLater(idx); return; }
+    var words=(($('stage').querySelector('.pnl.c')||{}).innerText||'').split(/\s+/).length, ms=Math.max(4000,words*330), t0=Date.now(), at=idx;
     clearTimer();
     (function tick(){ if(!listening || !cur || idx!==at) return; var f=(Date.now()-t0)/ms; setFill(f);
-      if(f>=1){ var waitAnswer=(mode==='sc' && idx===1 && S.ranswers[cur.id]===undefined); if(idx<NC()-1 && !waitAnswer) advanceLater(at); else if(idx===NC()-1){ listening=false; setPlay(); } }
+      if(f>=1){ if(idx<NC()-1 && !(idx===QI() && !answered())) advanceLater(at); else if(idx===NC()-1){ listening=false; setPlay(); } }
       else timer=setTimeout(tick,100); })();
   });
 }
@@ -831,6 +890,121 @@ function playClip(n){
 }
 function stopAudio(){ clearTimer(); if(player){ try{ player.pause(); }catch(e){} } }
 function setPlay(){ var b=$('rplay'); b.innerHTML=listening?ICON.pause:ICON.play; b.setAttribute('aria-label',listening?'Pause':'Play'); }
+
+/* colour theme per story, Deepstash-like */
+function hx(h){ h=h.replace('#',''); return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)]; }
+function mix(a,b,t){ var A=hx(a),B=hx(b); return 'rgb('+A.map(function(v,i){ return Math.round(v*(1-t)+B[i]*t); }).join(',')+')'; }
+function themeFor(col){
+  var r=$('reader').style;
+  if(isDark()){ r.setProperty('--rbg',mix(col,'#120A0E',.84)); r.setProperty('--rcard',mix(col,'#120A0E',.72)); r.setProperty('--rink','#F8F2EE'); r.setProperty('--racc',mix(col,'#FFFFFF',.08)); r.setProperty('--rdim',mix(col,'#120A0E',.62)); r.setProperty('--rbtn',mix(col,'#120A0E',.7)); }
+  else { r.setProperty('--rbg',mix(col,'#FFFFFF',.8)); r.setProperty('--rcard',mix(col,'#FFFFFF',.55)); r.setProperty('--rink','#24161B'); r.setProperty('--racc',mix(col,'#1A0E12',.5)); r.setProperty('--rdim',mix(col,'#FFFFFF',.2)); r.setProperty('--rbtn',mix(col,'#FFFFFF',.45)); }
+}
+function hl(s){ return esc(s).replace(/\[\[(.+?)\]\]/g,'<em class="hl">$1</em>'); }
+function artBlock(id,i){ return '<div class="pimg grain">'+scene(id,i)+'</div>'; }
+function cardHTML(i){
+  var u=U(), h='';
+  if(mode==='sc'){
+    var s=cur, a=S.ranswers[s.id], m=meta(s.g), gm=TXT[S.lang][s.g].m, lbl=[u.situation,u.yourturn,u.reflection][i];
+    h+='<span class="eyebrow">'+lbl+'</span>';
+    if(S.lang!=='en' && i!==1) h+='<p class="note">'+u.enOnly+'</p>';
+    if(i===0) h+='<p class="ptext">'+esc(s.s)+'</p>'+artBlock(s.id,0);
+    else if(i===1){
+      h+='<p class="ptext q">'+esc(s.q)+'</p><div class="opts">';
+      s.o.forEach(function(o,k){ var cls='opt'; if(a!==undefined){ if(k===s.ans) cls+=' right'; else if(k===a) cls+=' picked'; } h+='<button class="'+cls+'" data-ans="'+k+'"><b>'+'ABC'[k]+'</b>'+esc(o)+'</button>'; });
+      h+='</div>';
+      if(a!==undefined){ var ok=a===s.ans; h+='<div class="fb">'+faceSvg(ok?'happy':'hopeful',ok?'#A3E7B2':'#FFD764',ok?0:2)+'<p>'+esc(ok?s.y:s.n)+'</p></div>'; }
+    } else {
+      h+='<div class="lcard"><div class="lhead"><span class="lic grain">'+scene(s.id,0)+'</span><b>'+u.gurbani+'</b></div><div class="lline"></div><p class="gur" lang="pa">'+esc(m.g).replace(/\n/g,'<br>')+'</p><p class="ref">'+esc(ref(m))+'</p><p class="ptext sm">'+esc(gm)+'</p></div>';
+      h+='<p class="eyebrow" style="margin-top:6px">'+u.sakhi+'</p><p class="ptext">'+esc(s.k)+'</p>';
+      h+='<p class="eyebrow" style="margin-top:6px">'+u.think+'</p><p class="ptext">'+esc(s.x)+'</p>';
+      h+='<button class="btn cta" id="nextm">'+u.nextm+'</button>';
+    }
+    return h;
+  }
+  var d=T(cur.id);
+  h+='<span class="eyebrow">'+u.labels[Math.min(i,6)]+'</span>';
+  if(i===0) h+='<p class="ptext big">'+esc(d.s)+'</p>'+artBlock(cur.id,0);
+  else if(i===1) h+='<p class="gur" lang="pa">'+esc(cur.g).replace(/\n/g,'<br>')+'</p><p class="ref">'+esc(ref(cur))+'</p><div class="mean"><div class="k">'+u.meaning+'</div><p class="ptext">'+esc(d.m)+'</p></div>'+artBlock(cur.id,1);
+  else if(i===2) h+='<p class="ptext">'+esc(d.k)+'</p>'+artBlock(cur.id,2);
+  else if(i===3) h+='<p class="ptext">'+esc(d.a)+'</p>'+artBlock(cur.id,3);
+  else if(i===4) h+='<p class="ptext">'+esc(d.b)+'</p>'+artBlock(cur.id,4);
+  else if(i===5){ h+='<p class="ptext big">'+esc(d.t)+'</p>'+artBlock(cur.id,5); if(HELP[cur.id]) h+='<button class="btn ghost" id="helpbtn">'+u.help+'</button>'; }
+  else if(i===6){
+    var a2=S.answers[cur.id];
+    h+='<p class="ptext q">'+esc(d.q)+'</p><div class="opts">';
+    d.o.forEach(function(o,k){ var cls='opt'; if(a2!==undefined){ if(k===cur.ans) cls+=' right'; else if(k===a2) cls+=' picked'; } h+='<button class="'+cls+'" data-ans="'+k+'"><b>'+'ABC'[k]+'</b>'+esc(o)+'</button>'; });
+    h+='</div>';
+    if(a2!==undefined){ var ok2=a2===cur.ans; h+='<div class="fb">'+faceSvg(ok2?'happy':'hopeful',ok2?'#A3E7B2':'#FFD764',ok2?0:2)+'<p>'+esc(ok2?d.y:d.n)+'</p></div>'; }
+  } else {
+    h='<div class="lwrap"><div class="lcard big"><div class="lhead"><span class="lic grain">'+scene(cur.id,0)+'</span><b>'+esc(tname(cur.id))+'</b></div><div class="lline"></div><p class="ltext">'+hl(LESSONS[S.lang][cur.id])+'</p><div class="lfoot"><button class="lbtn" id="lshare" aria-label="Share">'+ICON.share+'</button><button class="lbtn" id="rsave" aria-label="Save">'+ICON.mark(isSaved(cur.id))+'</button></div></div></div><button class="btn cta" id="lcont">'+u.cont2+'</button>';
+  }
+  return h;
+}
+function panelPos(){ var st=$('stage'); return st.clientHeight-PEEK; }
+var PEEK=92;
+function buildPanels(){
+  var st=$('stage'), n=NC(), P=panelPos(), h='';
+  if(idx>0) h+='<div class="pnl p" style="transform:translate3d(0,'+(-P)+'px,0)">'+cardHTML(idx-1)+'</div>';
+  h+='<div class="pnl c" style="transform:translate3d(0,0,0)">'+cardHTML(idx)+'</div>';
+  if(idx<n-1) h+='<div class="pnl n'+(idx===QI() && !answered()?' locked':'')+'" style="transform:translate3d(0,'+P+'px,0)">'+cardHTML(idx+1)+'</div>';
+  st.innerHTML=h;
+}
+function drawCard(autoplay){
+  var n=NC(), segs='';
+  for(var i=0;i<n;i++) segs+='<span class="'+(i<idx?'done':(i===idx?'on':''))+'"><i style="width:'+(i<idx?100:0)+'%"></i></span>';
+  $('segs').innerHTML=segs;
+  $('rhead').textContent=mode==='sc'?cur.ti:T(cur.id).ti;
+  $('rspeed').textContent=S.rate+'×';
+  themeFor(mode==='sc'?CATS[cur.cat].col:SC[cur.id].col);
+  buildPanels();
+  $('rprev').disabled=idx===0; $('rnext').disabled=idx===n-1;
+  if(mode==='story' && idx<QI_STORY) S.resume={id:cur.id,i:idx};
+  persist(); setPlay();
+  var hint=$('swipehint'); if(hint){ $('swipetxt').textContent=U().swipe; hint.classList.toggle('on', !S.swiped && idx===0); }
+  if(autoplay && listening){ clearTimer(); stopAudio(); var at=idx; timer=setTimeout(function(){ if(listening && cur && idx===at) playClip(clipFor(idx)); },300); }
+}
+function nudge(){ var c=$('stage').querySelector('.pnl.c'); if(!c||!c.animate) return; c.animate([{transform:'translate3d(0,0,0)'},{transform:'translate3d(0,-26px,0)'},{transform:'translate3d(0,0,0)'}],{duration:380,easing:'cubic-bezier(.3,.7,.3,1)'}); var o=c.querySelector('.opts'); if(o&&o.animate) o.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300}); }
+function go(dir,auto){
+  if(anim) return;
+  var n=NC(), to=idx+dir;
+  if(to<0){ nudgeBack(); return; }
+  if(to>n-1) return;
+  if(dir>0 && idx===QI() && !answered()){ nudge(); return; }
+  if(!auto){ S.swiped=1; }
+  var st=$('stage'), P=panelPos(), c=st.querySelector('.pnl.c'), o=st.querySelector(dir>0?'.pnl.n':'.pnl.p');
+  anim=true; stopAudio();
+  [c,o].forEach(function(el){ if(el){ el.style.transition='transform .42s cubic-bezier(.22,.8,.24,1),opacity .42s'; } });
+  requestAnimationFrame(function(){
+    c.style.transform='translate3d(0,'+(dir>0?-P:P)+'px,0)';
+    if(o){ o.style.transform='translate3d(0,0,0)'; o.style.opacity=1; } c.style.opacity=.38;
+  });
+  setTimeout(function(){ anim=false; idx=to; listening=true; drawCard(true); },430);
+}
+function nudgeBack(){ var c=$('stage').querySelector('.pnl.c'); if(c&&c.animate) c.animate([{transform:'translate3d(0,0,0)'},{transform:'translate3d(0,24px,0)'},{transform:'translate3d(0,0,0)'}],{duration:360,easing:'ease-out'}); }
+function snapBack(){ var st=$('stage'), P=panelPos(); st.querySelectorAll('.pnl').forEach(function(el){ el.style.transition='transform .3s cubic-bezier(.22,.8,.24,1)'; var b=el.classList.contains('c')?0:(el.classList.contains('n')?P:-P); el.style.transform='translate3d(0,'+b+'px,0)'; }); }
+/* touch: drag the stack like reels; inner scroll wins until the card reaches its edge */
+(function(){
+  var st=null, y0=0, x0=0, t0=0, drag=false, decided=false, startTop=0, startBot=0;
+  function sEl(){ return $('stage'); }
+  document.addEventListener('touchstart',function(e){ var s=sEl(); if(!s || !s.contains(e.target) || anim) return; var c=s.querySelector('.pnl.c'); st=c; y0=e.touches[0].clientY; x0=e.touches[0].clientX; t0=performance.now(); drag=false; decided=false; startTop=c.scrollTop<=1; startBot=c.scrollTop+c.clientHeight>=c.scrollHeight-2; },{passive:true});
+  document.addEventListener('touchmove',function(e){ if(!st) return; var dy=e.touches[0].clientY-y0, dx=e.touches[0].clientX-x0;
+    if(!decided){ if(Math.abs(dy)<8 && Math.abs(dx)<8) return; decided=true; drag=Math.abs(dy)>Math.abs(dx) && ((dy<0 && startBot) || (dy>0 && startTop)); }
+    if(!drag) return; e.preventDefault();
+    var P=panelPos(), s=sEl(), n=s.querySelector('.pnl.n'), p=s.querySelector('.pnl.p'), d=dy;
+    if((dy<0 && (!n || n.classList.contains('locked'))) || (dy>0 && !p)) d=dy*.25;
+    s.querySelectorAll('.pnl').forEach(function(el){ el.style.transition='none'; });
+    st.style.transform='translate3d(0,'+d+'px,0)';
+    if(n) n.style.transform='translate3d(0,'+(P+Math.min(0,d))+'px,0)';
+    if(p) p.style.transform='translate3d(0,'+(-P+Math.max(0,d))+'px,0)';
+  },{passive:false});
+  document.addEventListener('touchend',function(e){ if(!st) return; var was=drag; st=null; if(!was) return;
+    var dy=e.changedTouches[0].clientY-y0, v=dy/Math.max(1,performance.now()-t0);
+    if(dy<-70 || v<-.5) go(1); else if(dy>70 || v>.5) go(-1); else snapBack();
+    setTimeout(function(){ if(!anim) snapBack(); },460);
+  },{passive:true});
+  var wl=0; document.addEventListener('wheel',function(e){ var s=sEl(); if(!s||!cur||!s.contains(e.target)) return; var c=s.querySelector('.pnl.c'); var now=Date.now(); if(now-wl<650) return;
+    if(e.deltaY>25 && c.scrollTop+c.clientHeight>=c.scrollHeight-2){ wl=now; go(1); } else if(e.deltaY<-25 && c.scrollTop<=1){ wl=now; go(-1); } },{passive:true});
+})();
 function openAny(at){
   idx=at||0; listening=true; $('reader').classList.add('on'); ensurePlayer();
   try{ player.muted=true; player.setAttribute('src',apath(clipFor(idx))); var pr=player.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
@@ -841,67 +1015,10 @@ function openAny(at){
 function openJ(id,at){ stopAudio(); mode='story'; cur=meta(id); openAny(at); }
 function openS(id){ stopAudio(); mode='sc'; cur=scen(id); openAny(0); }
 function closeJ(){ listening=false; stopAudio(); $('reader').classList.remove('on'); cur=null; render(); }
-function drawCard(autoplay){
-  var u=U(), h='', segs='', n=NC();
-  for(var i=0;i<n;i++) segs+='<span><i style="width:'+(i<idx?100:0)+'%"></i></span>';
-  $('segs').innerHTML=segs; if(!listening) setFill(idx===n-1?1:0);
-  $('rlang').textContent=LANGS.filter(function(l){return l[0]===S.lang;})[0][1]; $('rspeed').textContent=S.rate+'×';
-  var art=$('rart');
-  if(mode==='sc'){
-    var s=cur, a=S.ranswers[s.id], m=meta(s.g), gm=TXT[S.lang][s.g].m;
-    $('rcat').textContent=cname(s.cat); $('rhead').textContent=s.ti; $('rsave').style.display='none';
-    art.className='rart grain'+(idx===0?'':' hide'); art.style.background=CATS[s.cat].col; if(idx===0) art.innerHTML=scene(s.id,0);
-    var lbl=[u.situation,u.yourturn,u.reflection][idx];
-    h+='<span class="layer" style="background:'+CATS[s.cat].col+'">'+lbl+'</span>';
-    if(S.lang!=='en' && idx!==1) h+='<p class="note">'+u.enOnly+'</p>';
-    if(idx===0) h+='<p class="rtext">'+esc(s.s)+'</p>';
-    else if(idx===1){
-      h+='<p class="rtext" style="font-weight:700">'+esc(s.q)+'</p><div class="opts">';
-      s.o.forEach(function(o,i){ var cls='opt'; if(a!==undefined){ if(i===s.ans) cls+=' right'; else if(i===a) cls+=' picked'; } h+='<button class="'+cls+'" data-ans="'+i+'"><b>'+'ABC'[i]+'</b>'+esc(o)+'</button>'; });
-      h+='</div>';
-      if(a!==undefined){ var ok=a===s.ans; h+='<div class="fb" id="fb">'+faceSvg(ok?'happy':'hopeful',ok?'#A3E7B2':'#FFD764',ok?0:2)+'<p>'+esc(ok?s.y:s.n)+'</p></div><button class="btn" id="tonext">'+u.cont2+' · '+u.reflection+'</button>'; }
-    } else {
-      h+='<div class="callout"><span class="k">'+u.gurbani+'</span><p class="gur" lang="pa" style="font-size:22px">'+esc(m.g).replace(/\n/g,'<br>')+'</p><p class="ref">'+esc(ref(m))+'</p><div class="mean"><div class="k">'+u.meaning+'</div><p class="rtext" style="font-size:16.5px">'+esc(gm)+'</p></div></div>';
-      h+='<div class="callout"><span class="k">'+u.sakhi+'</span><p>'+esc(s.k)+'</p></div>';
-      h+='<div class="callout"><span class="k">'+u.think+'</span><p>'+esc(s.x)+'</p></div>';
-      h+='<div class="rfoot"><button class="btn" id="nextm">'+u.nextm+'</button></div>';
-    }
-  } else {
-    var d=T(cur.id);
-    $('rcat').textContent=tname(cur.id); $('rhead').textContent=d.ti; $('rsave').style.display='';
-    $('rsave').innerHTML=ICON.mark(isSaved(cur.id)); $('rsave').setAttribute('aria-pressed',isSaved(cur.id));
-    art.className='rart grain'+(idx===NCARDS-1?' hide':''); art.style.background=SC[cur.id].col; if(idx<NCARDS-1) art.innerHTML=scene(cur.id,idx);
-    h+='<span class="layer" style="background:'+LCOL[idx]+'">'+u.labels[idx]+'</span>';
-    if(idx===0) h+='<p class="rtext big">'+esc(d.s)+'</p>';
-    else if(idx===1) h+='<p class="gur" lang="pa">'+esc(cur.g).replace(/\n/g,'<br>')+'</p><p class="ref">'+esc(ref(cur))+'</p><div class="mean"><div class="k">'+u.meaning+'</div><p class="rtext">'+esc(d.m)+'</p></div>';
-    else if(idx===2) h+='<p class="rtext">'+esc(d.k)+'</p>';
-    else if(idx===3) h+='<p class="rtext">'+esc(d.a)+'</p>';
-    else if(idx===4) h+='<p class="rtext">'+esc(d.b)+'</p>';
-    else if(idx===5){ h+='<p class="rtext big" style="font-size:21px">'+esc(d.t)+'</p>'; if(HELP[cur.id]) h+='<button class="btn ghost" id="helpbtn">'+u.help+'</button>'; }
-    else {
-      var a2=S.answers[cur.id];
-      h+='<p class="rtext" style="font-weight:700">'+esc(d.q)+'</p><div class="opts" id="opts">';
-      d.o.forEach(function(o,i){ var cls='opt'; if(a2!==undefined){ if(i===cur.ans) cls+=' right'; else if(i===a2) cls+=' picked'; } h+='<button class="'+cls+'" data-ans="'+i+'"><b>'+'ABC'[i]+'</b>'+esc(o)+'</button>'; });
-      h+='</div>';
-      if(a2!==undefined){ var ok2=a2===cur.ans; h+='<div class="fb" id="fb">'+faceSvg(ok2?'happy':'hopeful',ok2?'#A3E7B2':'#FFD764',ok2?0:2)+'<p>'+esc(ok2?d.y:d.n)+'</p></div>'; }
-    }
-    if(idx<NCARDS-1) S.resume={id:cur.id,i:idx};
-  }
-  $('rbody').innerHTML=h; $('rbody').scrollTop=0; persist();
-  $('rprev').disabled=idx===0;
-  $('rnext').innerHTML=idx===n-1?ICON.check:ICON.next;
-  $('rnext').disabled=(mode==='sc' && idx===1 && S.ranswers[cur.id]===undefined);
-  setPlay();
-  if(autoplay && listening){ clearTimer(); stopAudio(); var at=idx; timer=setTimeout(function(){ if(listening && cur && idx===at) playClip(clipFor(idx)); },350); }
-}
 function finishS(){ if(S.rdone.indexOf(cur.id)<0) S.rdone.push(cur.id); persist(); }
-function next(){
-  if(mode==='sc' && idx===1 && S.ranswers[cur.id]===undefined) return;
-  if(idx<NC()-1){ idx++; drawCard(true); }
-  else if(mode==='sc'){ finishS(); closeJ(); }
-  else { if(!isDone(cur.id)) S.done.push(cur.id); S.resume=null; persist(); closeJ(); }
-}
-function prev(){ if(idx>0){ idx--; drawCard(true); } }
+function nextStory(){ var pool=META.filter(function(m){ return !isDone(m.id) && m.id!==cur.id; }); if(!pool.length) pool=META.filter(function(m){ return m.id!==cur.id; }); return pool[Math.floor(Math.random()*pool.length)].id; }
+function next(){ go(1); }
+function prev(){ go(-1); }
 function sheet(html){ $('sheet').innerHTML=html+'<button class="btn" id="sheetclose">'+U().ok+'</button>'; $('sheetwrap').classList.add('on'); }
 function cycleLang(){ var i=LANGS.map(function(l){return l[0];}).indexOf(S.lang); S.lang=LANGS[(i+1)%3][0]; persist(); }
 
@@ -921,31 +1038,31 @@ document.addEventListener('click',function(e){
   else if(el.dataset.toggletheme){ S.theme=isDark()?'light':'dark'; persist(); applyTheme(); render(); }
   else if(el.dataset.rate){ S.rate=+el.dataset.rate; persist(); render(); }
   else if(el.dataset.ans!==undefined){
-    var a=+el.dataset.ans, ok;
-    if(mode==='sc'){ S.ranswers[cur.id]=a; ok=a===cur.ans; finishS(); } else { S.answers[cur.id]=a; ok=a===cur.ans; }
-    persist(); stopAudio(); listening=false; drawCard(false); listening=true; setPlay();
-    var f=$('fb'); if(f) f.scrollIntoView({block:'nearest',behavior:'smooth'});
+    var a=+el.dataset.ans, ok=a===cur.ans;
+    if(mode==='sc'){ S.ranswers[cur.id]=a; finishS(); } else { S.answers[cur.id]=a; }
+    persist(); stopAudio(); listening=true; drawCard(false);
+    var f=$('stage').querySelector('.pnl.c .fb'); if(f) f.scrollIntoView({block:'nearest',behavior:'smooth'});
     playClip(mode==='sc'?(ok?2:3):(ok?7:8));
   }
-  else if(el.id==='tonext'){ idx=2; listening=true; drawCard(true); }
   else if(el.id==='nextm'){ var nid=randomScen(cur.id); stopAudio(); openS(nid); }
+  else if(el.id==='lcont'){ if(!isDone(cur.id)) S.done.push(cur.id); S.resume=null; persist(); stopAudio(); openJ(nextStory(),0); }
+  else if(el.id==='lshare'){ var txt=T(cur.id).ti+'\n\n'+LESSONS[S.lang][cur.id].replace(/\[\[|\]\]/g,'')+'\n\nJach'; try{ if(navigator.share) navigator.share({title:'Jach',text:txt,url:location.href.split('#')[0]}).catch(function(){}); else if(navigator.clipboard) navigator.clipboard.writeText(txt); }catch(x){} }
   else if(el.id==='bshuffle'){ S.bseed=(S.bseed||1)+1; persist(); render(); }
   else if(el.id==='bsurprise'){ openS(randomScen()); }
   else if(el.id==='rplay'){ listening=!listening; setPlay(); if(listening){ if(player && player.getAttribute('src') && player.currentTime>0 && !player.ended){ var pr=player.play(); if(pr&&pr.catch) pr.catch(function(){}); } else playClip(clipFor(idx)); } else stopAudio(); }
-  else if(el.id==='rnext') next();
-  else if(el.id==='rprev') prev();
+  else if(el.id==='rback5'){ if(player && player.getAttribute('src')){ player.currentTime=Math.max(0,player.currentTime-5); if(!listening){ listening=true; setPlay(); var p2=player.play(); if(p2&&p2.catch) p2.catch(function(){}); } } }
+  else if(el.id==='rnext') go(1);
+  else if(el.id==='rprev') go(-1);
   else if(el.id==='rclose') closeJ();
-  else if(el.id==='rlang'){ cycleLang(); stopAudio(); drawCard(true); }
+  else if(el.id==='rlang'){ cycleLang(); stopAudio(); listening=true; drawCard(true); }
   else if(el.id==='rspeed'){ var ri=RATES.indexOf(S.rate); S.rate=RATES[(ri+1)%RATES.length]; persist(); $('rspeed').textContent=S.rate+'×'; if(player){ player.playbackRate=S.rate; player.defaultPlaybackRate=S.rate; } }
-  else if(el.id==='rsave'){ var i=S.saved.indexOf(cur.id); if(i>-1) S.saved.splice(i,1); else S.saved.push(cur.id); persist(); $('rsave').innerHTML=ICON.mark(isSaved(cur.id)); }
+  else if(el.id==='rsave'){ var i=S.saved.indexOf(cur.id); if(i>-1) S.saved.splice(i,1); else S.saved.push(cur.id); persist(); el.innerHTML=ICON.mark(isSaved(cur.id)); }
   else if(el.id==='helpbtn') sheet('<h2>'+U().helpt+'</h2><p>'+U().helpb+'</p>');
   else if(el.id==='sheetclose') $('sheetwrap').classList.remove('on');
   else if(el.id==='reset'){ S.saved=[]; S.done=[]; S.resume=null; S.answers={}; S.rdone=[]; S.ranswers={}; persist(); render(); }
 });
-document.addEventListener('keydown',function(e){ if(!cur) return; if(e.key==='ArrowRight') next(); else if(e.key==='ArrowLeft') prev(); else if(e.key==='Escape') closeJ(); else if(e.key===' '){ e.preventDefault(); $('rplay').click(); } });
-var sx=null, sy=null;
-$('rbody').addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
-$('rbody').addEventListener('touchend',function(e){ if(sx===null) return; var dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; sx=null; if(Math.abs(dy)>Math.abs(dx)) return; if(dx<-60) next(); else if(dx>60) prev(); },{passive:true});
+document.addEventListener('keydown',function(e){ if(!cur) return; if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); go(1); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); go(-1); } else if(e.key==='Escape') closeJ(); else if(e.key===' '){ e.preventDefault(); $('rplay').click(); } });
+window.addEventListener('resize',function(){ if(cur && !anim) buildPanels(); });
 if(window.matchMedia) try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ if(!cur) render(); }); }catch(e){}
 function fromHash(){ var h=(location.hash||'').replace('#',''); if(['today','explore','reflect','me'].indexOf(h)>-1){ tab=h; sub=null; } render(); }
 window.addEventListener('hashchange',fromHash);
