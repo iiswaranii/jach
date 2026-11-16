@@ -1,5 +1,5 @@
 // Jach service worker: the app shell works offline; narration is cached as it is played.
-const SHELL = 'jach-shell-v4', AUDIO = 'jach-audio-v1';
+const SHELL = 'jach-shell-v5', AUDIO = 'jach-audio-v1';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== SHELL && k !== AUDIO).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
