@@ -944,7 +944,7 @@ async function toolSearch(inp){
   }
   res.sort(function(a,b){ return b[0]-a[0]; });
   var out=[], seen={};
-  for(var r=0;r<res.length && out.length<10;r++){
+  for(var r=0;r<res.length && out.length<8;r++){
     var li=res[r][1], l2=L[li]; if(seen[l2[0]]>=2) continue; seen[l2[0]]=(seen[l2[0]]||0)+1;
     var sh=await gbShabad(l2[0]), S2=ix.S[l2[0]], k=li; while(k>0 && L[k-1][0]===l2[0]) k--;
     var line=sh[li-k]; if(!line) continue;
@@ -956,10 +956,10 @@ async function toolSearch(inp){
 async function toolShabad(inp){
   var si=parseInt(inp.shabad_id,10), ix=await gbIdx(); if(!(si>=0 && si<ix.S.length)) throw new Error('Unknown shabad_id');
   var sh=await gbShabad(si), S2=ix.S[si], lines=sh, start=0;
-  if(sh.length>36){ var hint=gnorm(inp.focus_gurmukhi||''), at=0; if(hint) for(var i=0;i<sh.length;i++) if(gnorm(sh[i][0]).indexOf(hint.slice(0,24))>-1){ at=i; break; } start=Math.max(0,at-14); lines=sh.slice(start,start+30); }
+  if(sh.length>28){ var hint=gnorm(inp.focus_gurmukhi||''), at=0; if(hint) for(var i=0;i<sh.length;i++) if(gnorm(sh[i][0]).indexOf(hint.slice(0,24))>-1){ at=i; break; } start=Math.max(0,at-10); lines=sh.slice(start,start+22); }
   lines.forEach(function(l){ rememberLine(l[0],l[3],S2[1]); });
   return {shabad_id:si,author:S2[1],raag:S2[2],ang:sh[0][3],total_lines:sh.length,from_line:start+1,
-    lines:lines.map(function(l){ return {gurmukhi:l[0],ang:l[3],english:l[1],teeka_sahib_singh:String(l[2]||'').slice(0,320)}; })};
+    lines:lines.map(function(l){ return {gurmukhi:l[0],ang:l[3],english:l[1],teeka_sahib_singh:String(l[2]||'').slice(0,200)}; })};
 }
 var TOOLS_DEF=[
  {name:'search_gurbani',description:'Search all of Sri Guru Granth Sahib. Give first_letters (first Gurmukhi letter of each word of a pangti you have in mind, e.g. ਤਵਨਲਪਸ), or gurmukhi text, and/or english_keywords describing the theme. Returns up to 10 matching lines with shabad_id, ang, author, raag, exact Gurmukhi and an English translation.',
@@ -997,7 +997,8 @@ var RULES=[
 ].join('\n');
 
 /* engines */
-function chatEngine(){ return S.gkey?'gemini':'claude'; }
+var PROXY=''; // set to the deployed Cloudflare Worker URL, e.g. https://jach-chat.example.workers.dev
+function chatEngine(){ if(S.gkey) return 'gemini'; if(SAMPLE) return 'claude'; if(PROXY) return 'gemini'; return 'claude'; }
 var SAMPLE=null; (async function(){ try{ if(window.claude && claude.use) SAMPLE=await claude.use('sample'); }catch(e){} if(tab==='chat' && !cur) renderChat(); })();
 async function askClaude(turns,onText,onStatus,signal){
   if(!SAMPLE) throw {code:'no_engine'};
@@ -1008,7 +1009,7 @@ async function askClaude(turns,onText,onStatus,signal){
   var r=await SAMPLE(input,opts); return r.text;
 }
 async function askGemini(turns,onText,onStatus,signal){
-  var model=S.gmodel||'gemini-flash-latest', url='https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(S.gkey);
+  var model=S.gmodel||'gemini-flash-latest', url=S.gkey?'https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(S.gkey):PROXY.replace(/\/$/,'')+'/v1beta/models/'+model+':generateContent';
   var contents=turns.map(function(t){ return {role:t.role==='assistant'?'model':'user',parts:[{text:t.content}]}; });
   var decl=TOOLS_DEF.map(function(t){ return {name:t.name,description:t.description,parameters:t.inputSchema}; });
   for(var round=0;round<6;round++){
@@ -1058,7 +1059,7 @@ function verifyMsg(m){
 function renderChat(){
   var box=$('clist'); if(!box) return; var u=U();
   var CM=curChat().msgs; if(!CM.length){
-    var eng=(SAMPLE||S.gkey);
+    var eng=(SAMPLE||S.gkey||PROXY);
     box.innerHTML='<div class="cempty"><div class="brand big">'+LOGO+'</div><h1>'+u.chat+'</h1><p class="sub">'+u.csub+'</p>'+(eng?'<div class="chips">'+u.sugg.map(function(s){ return '<button class="schip" data-sugg="'+esc(s)+'">'+esc(s)+'</button>'; }).join('')+'</div>':'<div class="card"><b>'+u.setupT+'</b><p class="sub">'+u.setupB+'</p><button class="btn" data-tab="me">'+u.open+'</button></div>')+'</div>';
     return;
   }
