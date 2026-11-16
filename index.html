@@ -15,7 +15,7 @@
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=Figtree:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: phone-width app; pastel illustrated tiles on a soft lavender ground; full-screen story player with an illustration panel and story bars that fill with the voice. */
 :root{
@@ -204,6 +204,37 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
 @media (min-width:700px){body{background:var(--surface2)}.app{box-shadow:0 20px 60px rgba(0,0,0,.12)}}
 @media (max-width:350px){.grid{gap:8px}.etile{min-height:132px;padding:12px}.etile .fc{width:52px;height:52px}.rbody{padding:14px 16px}}
 
+
+/* chat */
+.view.chatv{padding:0;gap:0;overflow:hidden}
+.chead{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px}
+.chead b{font-family:var(--display);font-size:22px}
+.clist{flex:1;overflow-y:auto;padding:6px 16px 10px;display:flex;flex-direction:column;gap:16px;overscroll-behavior:contain}
+.cempty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:18px 4px}
+.cempty .brand.big svg{width:56px;height:56px}
+.cempty .chips{justify-content:center;margin-top:6px}
+.schip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 14px;font-weight:600;font-size:14px;line-height:1.3;text-align:center}
+.cm.u{align-self:flex-end;max-width:84%}
+.cm.u .bub2{background:var(--ink);color:var(--bg);border-radius:20px 20px 6px 20px;padding:11px 15px;font-size:16px;line-height:1.45}
+.cm.a{font-family:"Literata",Georgia,"Noto Sans Devanagari","Noto Sans Gurmukhi",serif;font-size:17.5px;line-height:1.6;color:var(--ink)}
+.cm.a p{margin:0}
+.cm.a .gap{height:10px}
+.cm.a ul{margin:4px 0;padding-left:20px}
+.cm.a li{margin:3px 0}
+.cm.a i{color:var(--muted)}
+.who{font-family:var(--body);font-size:13px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.cg{margin:2px 0;padding:10px 12px;border-left:4px solid var(--good);background:color-mix(in srgb,var(--good) 9%,transparent);border-radius:4px 12px 12px 4px}
+.cg p{font-family:var(--gur);font-weight:600;font-size:18.5px;line-height:1.6}
+.cg.bad{border-left-color:var(--warn);background:color-mix(in srgb,var(--warn) 9%,transparent)}
+.chk{display:block;font-family:var(--body);font-size:11.5px;font-weight:700;margin-top:4px}
+.chk.ok{color:var(--good)}.chk.no{color:var(--warn)}
+.cstat{font-family:var(--body);font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-top:4px}
+.dots{display:inline-flex;gap:3px}.dots i{width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.3;animation:dp 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,100%{opacity:.25}50%{opacity:1}}
+.cbar{display:flex;gap:10px;align-items:flex-end;padding:8px 14px 10px;border-top:1px solid var(--line);background:var(--bg)}
+.cbar textarea{flex:1;resize:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:22px;padding:11px 16px;font:inherit;font-size:16px;line-height:1.4;max-height:140px;outline:none}
+.csend{width:46px;height:46px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:0 0 auto}
 /* reels-style reader (Deepstash-like) */
 .reader{background:var(--rbg,var(--bg));color:var(--rink,var(--ink));transition:background .4s}
 .rhd{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 18px 10px}
@@ -269,7 +300,7 @@ h2{font-family:var(--display);font-weight:800;font-size:19px;margin:0;text-wrap:
   <nav class="tabs" aria-label="Main">
     <button data-tab="today"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg><span id="tb0"></span></button>
     <button data-tab="explore"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span id="tb1"></span></button>
-    <button data-tab="reflect"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="10" r="6"/><circle cx="17.5" cy="16.5" r="4"/><circle cx="17.5" cy="5.5" r="2.2"/></svg><span id="tb2"></span></button>
+    <button data-tab="chat"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg><span id="tb2"></span></button>
     <button data-tab="me"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="tb3"></span></button>
   </nav>
   <section class="reader" id="reader" aria-label="Story">
@@ -715,6 +746,7 @@ function render(){
   else if(tab==='explore'){
     h+='<div><h1>'+u.explore+'</h1><p class="sub">'+u.exsub+'</p></div><label class="sbox">'+ICON.search+'<input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="'+esc(u.sph)+'" value="'+esc(query)+'"></label><div id="exbody" style="display:flex;flex-direction:column;gap:18px"></div>';
   }
+  else if(tab==='chat'){ v.className='view chatv'; h=chatView(); }
   else if(tab==='reflect'){
     var cats=['all'].concat(Object.keys(CATS).filter(function(c){ return SCEN.some(function(s){return s.cat===c;}); }));
     h+='<div class="field full" id="bf"></div>';
@@ -728,12 +760,14 @@ function render(){
     h+='<div class="card"><label>'+u.lang+'</label><div class="seg">'+LANGS.map(function(l){ return '<button data-lang="'+l[0]+'" aria-pressed="'+(S.lang===l[0])+'">'+l[2]+'</button>'; }).join('')+'</div>';
     h+='<label>'+u.theme+'</label><div class="seg">'+['system','light','dark'].map(function(t,i){ return '<button data-theme="'+t+'" aria-pressed="'+(S.theme===t)+'">'+u.themes[i]+'</button>'; }).join('')+'</div>';
     h+='<label>'+u.speed+'</label><div class="seg">'+RATES.map(function(r){ return '<button data-rate="'+r+'" aria-pressed="'+(S.rate===r)+'">'+r+'×</button>'; }).join('')+'</div></div>';
+    h+='<div class="card"><label>'+u.eng+'</label><p class="sub" style="margin:0">'+(SAMPLE?u.engClaude:u.engGem)+'</p><div style="display:flex;gap:8px"><input id="gkey" type="password" autocomplete="off" placeholder="'+esc(u.keyPh)+'" value="'+esc(S.gkey||'')+'" style="flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg)"><button class="btn" id="gsave" style="width:auto">'+u.save+'</button></div><p class="sub" style="margin:0;font-size:12px">'+u.privacy+'</p></div>';
     h+='<div class="sec"><h2>'+u.saved+'</h2>'+(saved.length?saved.map(rowCard).join(''):'<div class="empty">'+u.nosaved+'</div>')+'</div>';
     h+='<div class="sec"><h2>'+u.done+' · '+done.length+' '+u.of+' '+META.length+'</h2>'+(done.length?done.map(rowCard).join(''):'<div class="empty">'+u.nodone+'</div>')+'</div>';
     if(rd.length) h+='<div class="sec"><h2>'+u.moments+' · '+rd.length+' '+u.of+' '+SCEN.length+'</h2>'+rd.map(scRow).join('')+'</div>';
     h+='<button class="btn ghost" id="reset">'+u.reset+'</button>';
   }
   v.innerHTML=h; v.scrollTop=0;
+  if(tab==='chat') bindChat();
   if(tab==='explore'){ var q=$('q'); q.addEventListener('input',function(){ query=q.value; renderExplore(); }); renderExplore(); }
   if(tab==='reflect'){ var tb=document.querySelector('.tabs'); $('rbot').style.bottom=tb.offsetHeight+'px'; bfStart(); }
 }
@@ -846,6 +880,205 @@ function randomScen(except){
   return pool[Math.floor(Math.random()*pool.length)].id;
 }
 window.addEventListener('resize',function(){ if(BF.on) bfFrame(); });
+
+/* ---------------- Chat: answers grounded in Sri Guru Granth Sahib ---------------- */
+var UIC={
+ en:{chat:'Chat',csub:'Ask anything about life. Answers come from Gurbani, checked against Sri Guru Granth Sahib.',ph:'Message Jach…',newc:'New chat',think:'Thinking…',search:'Searching Gurbani…',read:'Reading the full shabad…',ver:'Checked in Sri Guru Granth Sahib',unver:'Could not be checked against Sri Guru Granth Sahib, please verify before relying on it',stop:'Stop',err:'Something went wrong. Please try again.',rate:'Too many messages right now. Please wait a little and try again.',nogrant:'Chat needs permission to use Claude on your account. Tap send again to allow it.',
+  setupT:'Connect the chat',setupB:'Inside the Claude app this chat runs on your Claude account. On the installed app it needs a free Google Gemini API key from aistudio.google.com. Paste it in Me › Chat engine. The key stays on this phone.',open:'Open settings',
+  sugg:['I feel anxious about my exams','Share a pangti about gratitude','ਮੈਨੂੰ ਗੁੱਸਾ ਬਹੁਤ ਆਉਂਦਾ ਹੈ','Mujhe kisi ko maaf karna hai, kaise karun?','I just got a new job, I am so happy!'],
+  eng:'Chat engine',engClaude:'Claude (inside the Claude app)',engGem:'Google Gemini key',keyPh:'Paste Gemini API key',save:'Save',saved:'Saved',privacy:'Your messages are sent to the AI provider to get an answer. They are kept only on this device.'},
+ hi:{chat:'बातचीत',csub:'ज़िंदगी के बारे में कुछ भी पूछिए। जवाब गुरबाणी से आते हैं, श्री गुरु ग्रंथ साहिब से जाँचे हुए।',ph:'Jach से पूछिए…',newc:'नई बातचीत',think:'सोच रहा है…',search:'गुरबाणी में ढूँढ रहा है…',read:'पूरा शब्द पढ़ रहा है…',ver:'श्री गुरु ग्रंथ साहिब में जाँचा गया',unver:'श्री गुरु ग्रंथ साहिब से जाँचा नहीं जा सका, भरोसा करने से पहले मिलान कर लीजिए',stop:'रोकें',err:'कुछ गड़बड़ हुई। फिर से कोशिश कीजिए।',rate:'अभी बहुत संदेश हो गए। थोड़ा रुककर फिर कोशिश कीजिए।',nogrant:'बातचीत के लिए Claude इस्तेमाल करने की अनुमति चाहिए। अनुमति देने के लिए फिर से भेजें दबाइए।',
+  setupT:'बातचीत जोड़िए',setupB:'Claude ऐप के अंदर यह बातचीत आपके Claude खाते पर चलती है। इंस्टॉल किए गए ऐप में aistudio.google.com से मुफ़्त Google Gemini API key चाहिए। उसे मैं › बातचीत का इंजन में डालिए। Key सिर्फ़ इसी फ़ोन में रहती है।',open:'सेटिंग खोलें',
+  sugg:['परीक्षा को लेकर बहुत घबराहट है','शुक्राने पर कोई पंक्ति बताइए','ਮੈਨੂੰ ਗੁੱਸਾ ਬਹੁਤ ਆਉਂਦਾ ਹੈ','मुझे किसी को माफ़ करना है, कैसे करूँ?','मुझे नई नौकरी मिली है, बहुत ख़ुश हूँ!'],
+  eng:'बातचीत का इंजन',engClaude:'Claude (Claude ऐप के अंदर)',engGem:'Google Gemini key',keyPh:'Gemini API key यहाँ डालें',save:'सहेजें',saved:'सहेज लिया',privacy:'जवाब पाने के लिए आपके संदेश AI सेवा को भेजे जाते हैं। वे सिर्फ़ इसी फ़ोन में रखे जाते हैं।'},
+ pa:{chat:'ਗੱਲਬਾਤ',csub:'ਜ਼ਿੰਦਗੀ ਬਾਰੇ ਕੁਝ ਵੀ ਪੁੱਛੋ। ਜਵਾਬ ਗੁਰਬਾਣੀ ਤੋਂ ਆਉਂਦੇ ਹਨ, ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਨਾਲ ਜਾਂਚੇ ਹੋਏ।',ph:'Jach ਨੂੰ ਪੁੱਛੋ…',newc:'ਨਵੀਂ ਗੱਲਬਾਤ',think:'ਸੋਚ ਰਿਹਾ ਹੈ…',search:'ਗੁਰਬਾਣੀ ਵਿਚ ਲੱਭ ਰਿਹਾ ਹੈ…',read:'ਪੂਰਾ ਸ਼ਬਦ ਪੜ੍ਹ ਰਿਹਾ ਹੈ…',ver:'ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਵਿਚ ਜਾਂਚਿਆ ਗਿਆ',unver:'ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਨਾਲ ਜਾਂਚਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ, ਭਰੋਸਾ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਮਿਲਾਨ ਕਰ ਲਓ',stop:'ਰੋਕੋ',err:'ਕੁਝ ਗੜਬੜ ਹੋ ਗਈ। ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',rate:'ਹੁਣ ਬਹੁਤ ਸੁਨੇਹੇ ਹੋ ਗਏ। ਥੋੜ੍ਹਾ ਰੁਕ ਕੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',nogrant:'ਗੱਲਬਾਤ ਲਈ Claude ਵਰਤਣ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ। ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਫਿਰ ਭੇਜੋ ਦਬਾਓ।',
+  setupT:'ਗੱਲਬਾਤ ਜੋੜੋ',setupB:'Claude ਐਪ ਦੇ ਅੰਦਰ ਇਹ ਗੱਲਬਾਤ ਤੁਹਾਡੇ Claude ਖਾਤੇ ਉੱਤੇ ਚੱਲਦੀ ਹੈ। ਇੰਸਟਾਲ ਕੀਤੇ ਐਪ ਵਿਚ aistudio.google.com ਤੋਂ ਮੁਫ਼ਤ Google Gemini API key ਚਾਹੀਦੀ ਹੈ। ਉਸ ਨੂੰ ਮੈਂ › ਗੱਲਬਾਤ ਦਾ ਇੰਜਣ ਵਿਚ ਪਾਓ। Key ਸਿਰਫ਼ ਇਸੇ ਫ਼ੋਨ ਵਿਚ ਰਹਿੰਦੀ ਹੈ।',open:'ਸੈਟਿੰਗ ਖੋਲ੍ਹੋ',
+  sugg:['ਪੇਪਰਾਂ ਨੂੰ ਲੈ ਕੇ ਬਹੁਤ ਘਬਰਾਹਟ ਹੈ','ਸ਼ੁਕਰਾਨੇ ਬਾਰੇ ਕੋਈ ਪੰਗਤੀ ਦੱਸੋ','Mainu gussa bahut aunda hai','ਮੈਂ ਕਿਸੇ ਨੂੰ ਮਾਫ਼ ਕਰਨਾ ਹੈ, ਕਿਵੇਂ ਕਰਾਂ?','ਮੈਨੂੰ ਨਵੀਂ ਨੌਕਰੀ ਮਿਲੀ ਹੈ, ਬਹੁਤ ਖ਼ੁਸ਼ ਹਾਂ!'],
+  eng:'ਗੱਲਬਾਤ ਦਾ ਇੰਜਣ',engClaude:'Claude (Claude ਐਪ ਦੇ ਅੰਦਰ)',engGem:'Google Gemini key',keyPh:'Gemini API key ਇੱਥੇ ਪਾਓ',save:'ਸਾਂਭੋ',saved:'ਸਾਂਭ ਲਿਆ',privacy:'ਜਵਾਬ ਲੈਣ ਲਈ ਤੁਹਾਡੇ ਸੁਨੇਹੇ AI ਸੇਵਾ ਨੂੰ ਭੇਜੇ ਜਾਂਦੇ ਹਨ। ਉਹ ਸਿਰਫ਼ ਇਸੇ ਫ਼ੋਨ ਵਿਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ।'}
+};
+for(var L3 in UIC) for(var k3 in UIC[L3]) UI[L3][k3]=UIC[L3][k3];
+UI.en.tabs[2]=UIC.en.chat; UI.hi.tabs[2]=UIC.hi.chat; UI.pa.tabs[2]=UIC.pa.chat;
+if(!S.chat) S.chat=[];
+
+/* local Gurbani database (Shabad OS): index of every line + shabad buckets */
+var GB={idx:null,b:{},p:null};
+function gbIdx(){ if(GB.idx) return Promise.resolve(GB.idx); if(!GB.p) GB.p=fetch('gb/idx.json').then(function(r){ if(!r.ok) throw new Error('idx '+r.status); return r.json(); }).then(function(j){ GB.idx=j; return j; }); return GB.p; }
+function gbShabad(si){ return gbIdx().then(function(ix){ var b=Math.floor(si/ix.per); if(GB.b[b]) return GB.b[b][si]; return fetch('gb/s'+b+'.json').then(function(r){ return r.json(); }).then(function(j){ GB.b[b]=j; return j[si]; }); }); }
+function gnorm(s){ return String(s).replace(/[^ਁ-ੵ]/g,'').replace(/[੦-੯]/g,''); }
+function akharOf(s){ return String(s).replace(/[;,.॥੦-੯0-9]/g,' ').split(/\s+/).filter(Boolean).map(function(w){ return w[0]; }).join(''); }
+var STOP={the:1,and:1,of:1,to:1,a:1,in:1,is:1,are:1,you:1,your:1,i:1,my:1,me:1,he:1,his:1,him:1,they:1,them:1,that:1,this:1,with:1,for:1,on:1,be:1,by:1,it:1,as:1,who:1,what:1,lord:1,o:1};
+var VER={};
+function rememberLine(g,ang,author){ var n=gnorm(g); if(n.length>3) VER[n]={ang:ang,author:author}; }
+async function toolSearch(inp){
+  var ix=await gbIdx(), L=ix.L, res=[], ak=(inp.first_letters?String(inp.first_letters).replace(/\s/g,''):'') || (inp.gurmukhi?akharOf(inp.gurmukhi):'');
+  var words=String(inp.english_keywords||'').toLowerCase().split(/[^a-z']+/).filter(function(w){ return w.length>2 && !STOP[w]; });
+  for(var i=0;i<L.length;i++){
+    var l=L[i], sc=0;
+    if(ak && ak.length>=3 && l[2].indexOf(ak)>-1) sc+=10+ak.length;
+    if(words.length){ var en=l[3].toLowerCase(), h=0; for(var w=0;w<words.length;w++) if(en.indexOf(words[w])>-1) h++; if(h) sc+=h*2+(h===words.length?3:0); }
+    if(sc) res.push([sc,i]);
+  }
+  res.sort(function(a,b){ return b[0]-a[0]; });
+  var out=[], seen={};
+  for(var r=0;r<res.length && out.length<10;r++){
+    var li=res[r][1], l2=L[li]; if(seen[l2[0]]>=2) continue; seen[l2[0]]=(seen[l2[0]]||0)+1;
+    var sh=await gbShabad(l2[0]), S2=ix.S[l2[0]], k=li; while(k>0 && L[k-1][0]===l2[0]) k--;
+    var line=sh[li-k]; if(!line) continue;
+    rememberLine(line[0],line[3],S2[1]);
+    out.push({shabad_id:l2[0],ang:l2[1],author:S2[1],raag:S2[2],gurmukhi:line[0],english:l2[3]});
+  }
+  return out.length?out:'No matching lines. Try other English keywords or the first letters of the pangti.';
+}
+async function toolShabad(inp){
+  var si=parseInt(inp.shabad_id,10), ix=await gbIdx(); if(!(si>=0 && si<ix.S.length)) throw new Error('Unknown shabad_id');
+  var sh=await gbShabad(si), S2=ix.S[si], lines=sh, start=0;
+  if(sh.length>36){ var hint=gnorm(inp.focus_gurmukhi||''), at=0; if(hint) for(var i=0;i<sh.length;i++) if(gnorm(sh[i][0]).indexOf(hint.slice(0,24))>-1){ at=i; break; } start=Math.max(0,at-14); lines=sh.slice(start,start+30); }
+  lines.forEach(function(l){ rememberLine(l[0],l[3],S2[1]); });
+  return {shabad_id:si,author:S2[1],raag:S2[2],ang:sh[0][3],total_lines:sh.length,from_line:start+1,
+    lines:lines.map(function(l){ return {gurmukhi:l[0],ang:l[3],english:l[1],teeka_sahib_singh:String(l[2]||'').slice(0,320)}; })};
+}
+var TOOLS_DEF=[
+ {name:'search_gurbani',description:'Search all of Sri Guru Granth Sahib. Give first_letters (first Gurmukhi letter of each word of a pangti you have in mind, e.g. ਤਵਨਲਪਸ), or gurmukhi text, and/or english_keywords describing the theme. Returns up to 10 matching lines with shabad_id, ang, author, raag, exact Gurmukhi and an English translation.',
+  inputSchema:{type:'object',properties:{first_letters:{type:'string'},gurmukhi:{type:'string'},english_keywords:{type:'string'}}}},
+ {name:'get_shabad',description:'Read the whole shabad (or a 30-line window of a long one) by shabad_id, with exact Gurmukhi, Ang, an English translation and Prof. Sahib Singh\'s Punjabi teeka for every line. Always read the shabad before explaining a line, so the meaning follows its context (the Rahao line carries the central idea).',
+  inputSchema:{type:'object',properties:{shabad_id:{type:'integer'},focus_gurmukhi:{type:'string',description:'Optional: the line you care about, to centre the window in very long shabads'}},required:['shabad_id']}}
+];
+function toolsFor(onStatus){ return [
+  {name:TOOLS_DEF[0].name,description:TOOLS_DEF[0].description,inputSchema:TOOLS_DEF[0].inputSchema,execute:function(i){ onStatus('search'); return toolSearch(i); }},
+  {name:TOOLS_DEF[1].name,description:TOOLS_DEF[1].description,inputSchema:TOOLS_DEF[1].inputSchema,execute:function(i){ onStatus('read'); return toolShabad(i); }}
+]; }
+var RULES=[
+'You are Jach, a warm, wise companion inside a Sikh life-lessons app. People bring you their joys, worries and questions, and you answer in the light of Gurbani from Sri Guru Granth Sahib.',
+'',
+'Gurbani accuracy is sacred:',
+'- Never quote Gurbani from memory. First call search_gurbani (first letters of the pangti you have in mind and/or English theme keywords), then call get_shabad on the best result and read the whole shabad before you explain anything.',
+'- Quote Gurmukhi only exactly as the tools returned it, never altered, shortened inside a line, or transliterated in place of the Gurmukhi. Give the Ang and the author.',
+'- Interpret by context: let the full shabad, its Rahao line and Prof. Sahib Singh\'s teeka guide the meaning. Do not lift a line out of its shabad to say something the shabad does not say. If the found shabad does not really fit, search again.',
+'- Do not invent sakhis. If you mention one, keep to well-known accounts and say "Sikh tradition remembers".',
+'',
+'How to reply:',
+'- Reply in the same language and script the person used (English, Hindi, Punjabi in Gurmukhi, or Roman Hinglish/Punjabi).',
+'- Open with one or two warm sentences that meet them where they are. Celebrate happy news with real joy.',
+'- Then one pangti (two at most). Put each Gurmukhi line alone on a line starting with "> ". On the next line write "Ang N, Author". Then a simple translation in italics (*like this*) in their language.',
+'- Then explain in plain words how this shabad speaks to their situation (3 to 5 sentences), with an everyday example.',
+'- If useful, add **a short bold heading** and 2 to 4 practical steps as "- " bullets.',
+'- End with one gentle question. Keep the whole reply under about 230 words. No more than one emoji.',
+'- Do not write anything before or between tool calls; write only the final answer.',
+'',
+'Care and safety:',
+'- No judgement, no preaching, no moral scoring. You are an aid to reflection, not the Guru and not a granthi.',
+'- If someone mentions thoughts of suicide or self-harm, abuse, or being in danger: respond with care first, urge them to reach out right now to someone they trust, and give India\'s Tele-MANAS helpline 14416 (free, 24x7) or local emergency services. Gurbani can comfort but must never replace real help.',
+'- For medical, legal or money decisions, gently suggest a qualified professional as well.'
+].join('\n');
+
+/* engines */
+function chatEngine(){ return S.gkey?'gemini':'claude'; }
+var SAMPLE=null; (async function(){ try{ if(window.claude && claude.use) SAMPLE=await claude.use('sample'); }catch(e){} if(tab==='chat' && !cur) renderChat(); })();
+async function askClaude(turns,onText,onStatus,signal){
+  if(!SAMPLE) throw {code:'no_engine'};
+  var lim=await SAMPLE.limits().catch(function(){ return {}; });
+  var input=[{role:'user',content:RULES}].concat(turns);
+  var opts={cache:false,signal:signal,onText:function(u){ onText(u.text); }};
+  if(lim && lim.tools) opts.tools=toolsFor(onStatus); else input[0]={role:'user',content:RULES+'\n\n(Tools are unavailable right now: you may quote only the most widely known pangtis, and must say the quote is unchecked.)'};
+  var r=await SAMPLE(input,opts); return r.text;
+}
+async function askGemini(turns,onText,onStatus,signal){
+  var model=S.gmodel||'gemini-flash-latest', url='https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(S.gkey);
+  var contents=turns.map(function(t){ return {role:t.role==='assistant'?'model':'user',parts:[{text:t.content}]}; });
+  var decl=TOOLS_DEF.map(function(t){ return {name:t.name,description:t.description,parameters:t.inputSchema}; });
+  for(var round=0;round<6;round++){
+    var res=await fetch(url,{method:'POST',signal:signal,headers:{'Content-Type':'application/json'},body:JSON.stringify({systemInstruction:{parts:[{text:RULES}]},contents:contents,tools:[{functionDeclarations:decl}],generationConfig:{temperature:.6}})});
+    if(res.status===429) throw {code:'rate_limited'};
+    if(!res.ok){ var et=await res.text().catch(function(){return '';}); throw {code:'upstream_error',message:et}; }
+    var j=await res.json(), parts=(((j.candidates||[])[0]||{}).content||{}).parts||[];
+    var calls=parts.filter(function(p){ return p.functionCall; });
+    if(!calls.length){ var txt=parts.map(function(p){ return p.text||''; }).join('').trim(); if(!txt) throw {code:'empty_completion'}; onText(txt); return txt; }
+    contents.push({role:'model',parts:parts});
+    var resp=[];
+    for(var c=0;c<calls.length;c++){ var fc=calls[c].functionCall, out;
+      try{ if(fc.name==='search_gurbani'){ onStatus('search'); out=await toolSearch(fc.args||{}); } else { onStatus('read'); out=await toolShabad(fc.args||{}); } }catch(e){ out='Error: '+(e.message||e); }
+      resp.push({functionResponse:{name:fc.name,response:{result:out}}}); }
+    contents.push({role:'user',parts:resp});
+  }
+  throw {code:'empty_completion'};
+}
+
+/* rendering: markdown-lite + Gurbani check */
+function mdInline(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|[^*])\*([^*\n]+?)\*/g,'$1<i>$2</i>'); }
+function renderMsg(m){
+  if(m.role==='user') return '<div class="cm u"><div class="bub2">'+esc(m.content).replace(/\n/g,'<br>')+'</div></div>';
+  var h='', lines=String(m.content||'').split('\n'), list=false, v=m.v||{};
+  lines.forEach(function(ln){
+    var t=ln.trim();
+    if(/^- /.test(t)){ if(!list){ h+='<ul>'; list=true; } h+='<li>'+mdInline(t.slice(2))+'</li>'; return; }
+    if(list){ h+='</ul>'; list=false; }
+    if(!t){ h+='<div class="gap"></div>'; return; }
+    var gq=t.replace(/^>\s*/,'');
+    if(/[ਅ-ਹ]{2}/.test(gq) && (t[0]==='>' || gnorm(gq).length>8 && gnorm(gq).length/gq.replace(/\s/g,'').length>.7)){
+      var n=gnorm(gq), ok=m.done && v[n];
+      h+='<div class="cg'+(m.done&&!ok?' bad':'')+'"><p lang="pa">'+esc(gq)+'</p>'+(m.done?(ok?'<span class="chk ok">✓ '+U().ver+(ok.ang?' · Ang '+ok.ang:'')+'</span>':'<span class="chk no">'+U().unver+'</span>'):'')+'</div>'; return;
+    }
+    if(t[0]==='>') t=t.replace(/^>\s*/,'');
+    h+='<p>'+mdInline(t)+'</p>';
+  });
+  if(list) h+='</ul>';
+  return '<div class="cm a"><div class="who">Jach</div>'+h+(m.status?'<div class="cstat"><span class="dots"><i></i><i></i><i></i></span>'+esc(m.status)+'</div>':'')+'</div>';
+}
+function verifyMsg(m){
+  var v={};
+  String(m.content).split('\n').forEach(function(ln){ var gq=ln.trim().replace(/^>\s*/,''); if(!/[ਅ-ਹ]{2}/.test(gq)) return; var n=gnorm(gq); if(n.length<6) return;
+    for(var k in VER){ if(k.indexOf(n)>-1 || (n.length>12 && n.indexOf(k)>-1)){ v[n]=VER[k]; return; } } });
+  m.v=v;
+}
+function renderChat(){
+  var box=$('clist'); if(!box) return; var u=U();
+  if(!S.chat.length){
+    var eng=(SAMPLE||S.gkey);
+    box.innerHTML='<div class="cempty"><div class="brand big">'+LOGO+'</div><h1>'+u.chat+'</h1><p class="sub">'+u.csub+'</p>'+(eng?'<div class="chips">'+u.sugg.map(function(s){ return '<button class="schip" data-sugg="'+esc(s)+'">'+esc(s)+'</button>'; }).join('')+'</div>':'<div class="card"><b>'+u.setupT+'</b><p class="sub">'+u.setupB+'</p><button class="btn" data-tab="me">'+u.open+'</button></div>')+'</div>';
+    return;
+  }
+  box.innerHTML=S.chat.map(renderMsg).join('')+'<div style="height:8px"></div>';
+  box.scrollTop=box.scrollHeight;
+}
+var CHAT_CTL=null;
+async function sendChat(text){
+  text=String(text||'').trim(); if(!text || CHAT_CTL) return;
+  var u=U(); S.chat.push({role:'user',content:text}); var m={role:'assistant',content:'',status:u.think}; S.chat.push(m); renderChat(); setSend(true);
+  var turns=S.chat.slice(0,-1).filter(function(x){ return x.content; }).slice(-12).map(function(x){ return {role:x.role,content:x.content}; });
+  CHAT_CTL=new AbortController(); var box=$('clist');
+  function onText(t){ m.content=t; m.status=null; var last=box&&box.lastElementChild&&box.lastElementChild.previousElementSibling; if(last){ last.outerHTML=renderMsg(m); box.scrollTop=box.scrollHeight; } }
+  function onStatus(k){ m.status=k==='search'?u.search:u.read; if(!m.content) renderChat(); }
+  try{
+    gbIdx().catch(function(){});
+    var txt=chatEngine()==='gemini'?await askGemini(turns,onText,onStatus,CHAT_CTL.signal):await askClaude(turns,onText,onStatus,CHAT_CTL.signal);
+    m.content=txt; m.status=null; m.done=true; verifyMsg(m);
+  }catch(e){
+    m.status=null; m.done=true;
+    var code=e&&e.code;
+    if(code==='cancelled'){ if(!m.content) S.chat.pop(); }
+    else { m.content=(e&&e.text)||m.content||''; m.content+=(m.content?'\n\n':'')+'*'+(code==='rate_limited'?u.rate:code==='not_granted'?u.nogrant:code==='no_engine'?u.setupB:u.err)+'*'; }
+  }
+  CHAT_CTL=null; S.chat=S.chat.slice(-40); persist(); renderChat(); setSend(false);
+}
+function setSend(busy){ var b=$('csend'); if(!b) return; b.innerHTML=busy?'<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>':'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'; b.setAttribute('aria-label',busy?U().stop:'Send'); }
+function chatView(){
+  var u=U();
+  return '<div class="chead"><b>'+u.chat+'</b><button class="ibtn" id="cnew" aria-label="'+esc(u.newc)+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M12 8v8M8 12h8"/></svg></button></div>'
+   +'<div class="clist" id="clist"></div>'
+   +'<div class="cbar"><textarea id="cin" rows="1" placeholder="'+esc(u.ph)+'"></textarea><button class="csend" id="csend" aria-label="Send"></button></div>';
+}
+function bindChat(){
+  var ta=$('cin'); renderChat(); setSend(!!CHAT_CTL);
+  ta.addEventListener('input',function(){ ta.style.height='auto'; ta.style.height=Math.min(140,ta.scrollHeight)+'px'; });
+  ta.addEventListener('keydown',function(e){ if(e.key==='Enter' && !e.shiftKey && !e.isComposing && window.matchMedia('(hover:hover)').matches){ e.preventDefault(); var v=ta.value; ta.value=''; ta.style.height='auto'; sendChat(v); } });
+}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('button'); if(!el) return;
+  if(el.id==='csend'){ if(CHAT_CTL){ CHAT_CTL.abort(); return; } var ta=$('cin'); var v=ta.value; ta.value=''; ta.style.height='auto'; sendChat(v); }
+  else if(el.dataset.sugg){ sendChat(el.dataset.sugg); }
+  else if(el.id==='cnew'){ if(CHAT_CTL) CHAT_CTL.abort(); S.chat=[]; VER={}; persist(); renderChat(); }
+  else if(el.id==='gsave'){ var k=$('gkey').value.trim(); S.gkey=k||null; persist(); el.textContent=U().saved; }
+});
 
 /* ---------------- reader: reels-style story player (stories and moments) ---------------- */
 var LESSONS = {"en": {"anger1": "Anger is fast; [[wisdom is a pause]]. Let self-control be your workshop and patience your goldsmith. Before you reply, breathe, wait, and let the heat cool. Then speak in a way you will not regret tomorrow.", "ego1": "[[No success is yours alone.]] Teachers, family, timing and countless unseen hands helped you get here. Remembering the bigger order keeps the I, I quiet, and lets you celebrate with gratitude instead of pride.", "comp1": "[[No one is high and no one is low.]] Comparison steals joy and hides people from us. Measure yourself against who you were yesterday, and give everyone, from the boss to the cleaner, the same respect.", "accept1": "[[Do your part fully, then let go of the rest.]] Much of life is outside your hands. Walking with hukam means effort without anxiety: act well where you can, and accept calmly where you cannot.", "content1": "[[Enough is a feeling, not a number.]] Contentment means honest effort and simple gratitude for what you already have. Chasing more never ends. Noticing enough lets peace begin today.", "listen1": "[[Listening heals more than advice.]] When someone speaks, give them your full attention instead of planning your reply. Truly listening, to people and to the Guru's word, washes away pain and misunderstanding.", "habit1": "[[Small things done daily become who you are.]] Like Amar Das carrying water every dawn, a few calm minutes each morning shape the mind more than rare big efforts ever can.", "action1": "[[You reap what you sow.]] Your words and actions are seeds. Plant honesty, kindness and effort today, and the harvest will be yours. No one else can plant your field for you.", "hard1": "[[Hard days are part of life, not the end of it.]] Pain comes to everyone. Accept the day, reach out to someone who cares, do one small kind thing, and trust that heavy seasons pass.", "kind1": "[[Without fear, without enmity.]] Seeing the same light in everyone means helping without asking whose side they are on, just as Bhai Kanhaiya gave water to every wounded soldier.", "mind1": "[[Win your own mind, and you win the world.]] A restless mind runs to worries and screens. Gently bring it back to the present, again and again. That quiet practice is the real victory.", "nature1": "[[Air is our teacher, water our father, earth our mother.]] Treat nature like family: waste less, pollute nothing, and pause each day to notice the sky, trees and water that keep us alive.", "purpose1": "[[Truth is built one honest choice at a time.]] The wall of small lies grows brick by brick, and it falls the same way. Choose honesty in little things, and your whole life becomes truthful.", "guilt1": "[[Mistakes can be washed clean.]] Guilt is a signal, not a sentence. Admit the wrong, say sorry, make amends and change the habit. Love and honest change wash the mind like water washes cloth.", "joy1": "[[Joy grows when it is shared.]] Those whose hearts turn to the One stay in bloom. Celebrate your good moments, laugh, sing, and let others into your happiness. Shared joy doubles.", "lonely1": "[[You are never outside the circle.]] All beings have one Giver, so no one is truly alone. When loneliness comes, reach out to one person, and remember you belong to a much larger family.", "loved1": "[[You are valued for who you are, not for what you produce.]] Loving eyes turned mud into saffron. Accept that you matter, and look at others with the same loving eyes."}, "hi": {"anger1": "गुस्सा तेज़ होता है; [[समझदारी एक ठहराव है]]। संयम को अपनी कार्यशाला और धीरज को अपना सुनार बनाइए। जवाब देने से पहले साँस लीजिए, रुकिए और गर्मी को ठंडा होने दीजिए। फिर ऐसे बोलिए कि कल पछताना न पड़े।", "ego1": "[[कोई भी सफलता अकेले आपकी नहीं होती।]] अध्यापक, परिवार, सही समय और अनगिनत अनदेखे हाथों ने आपको यहाँ तक पहुँचाया। बड़े हुकम को याद रखने से मैं, मैं शांत रहता है और आप घमंड की जगह शुक्राने से खुशी मनाते हैं।", "comp1": "[[न कोई ऊँचा है, न कोई नीचा।]] तुलना खुशी छीन लेती है और लोगों को हमसे छिपा देती है। खुद को कल वाले खुद से नापिए, और मालिक से लेकर सफ़ाई करने वाले तक, सबको एक जैसा सम्मान दीजिए।", "accept1": "[[अपना हिस्सा पूरे मन से कीजिए, बाक़ी छोड़ दीजिए।]] ज़िंदगी का बहुत कुछ हमारे हाथ में नहीं है। हुकम के साथ चलना यानी बिना बेचैनी के मेहनत: जहाँ हो सके अच्छा कीजिए, जहाँ न हो सके शांति से मान लीजिए।", "content1": "[[काफ़ी होना एक एहसास है, कोई गिनती नहीं।]] संतोख का मतलब है ईमानदार मेहनत और जो है उसके लिए सीधा-सा शुक्राना। और ज़्यादा की दौड़ कभी ख़त्म नहीं होती। काफ़ी को पहचानने से शांति आज ही शुरू हो जाती है।", "listen1": "[[सुनना सलाह से ज़्यादा भरता है।]] जब कोई बोले, तो जवाब सोचने की जगह पूरा ध्यान उसे दीजिए। लोगों को और गुरु की बाणी को सच में सुनने से दुख और ग़लतफ़हमी धुल जाती हैं।", "habit1": "[[रोज़ की छोटी बातें ही आपकी पहचान बनती हैं।]] जैसे अमरदास जी हर सुबह पानी लाते रहे, वैसे ही हर सुबह के कुछ शांत मिनट मन को उतना गढ़ते हैं जितना कभी-कभार की बड़ी कोशिश कभी नहीं गढ़ सकती।", "action1": "[[जो बोते हैं, वही काटते हैं।]] आपके शब्द और काम बीज हैं। आज ईमानदारी, दया और मेहनत बोइए, फ़सल आपकी होगी। आपका खेत कोई और नहीं बो सकता।", "hard1": "[[कठिन दिन ज़िंदगी का हिस्सा हैं, उसका अंत नहीं।]] दुख सबके पास आता है। दिन को स्वीकार कीजिए, किसी अपने से बात कीजिए, एक छोटा अच्छा काम कीजिए, और भरोसा रखिए कि भारी मौसम बीत जाते हैं।", "kind1": "[[निरभउ, निरवैर: बिना डर, बिना दुश्मनी।]] सबमें एक ही ज्योति देखने का मतलब है बिना पूछे मदद करना कि कौन किस तरफ़ है, जैसे भाई घनैया ने हर घायल सिपाही को पानी पिलाया।", "mind1": "[[मन जीत लिया, तो जग जीत लिया।]] बेचैन मन चिंताओं और स्क्रीन की ओर भागता है। उसे प्यार से बार-बार वर्तमान में वापस लाइए। यही शांत अभ्यास असली जीत है।", "nature1": "[[हवा गुरु है, पानी पिता है, धरती माता है।]] प्रकृति को परिवार की तरह रखिए: कम बर्बाद कीजिए, कुछ भी गंदा मत कीजिए, और रोज़ एक पल रुककर आसमान, पेड़ और पानी को देखिए जो हमें ज़िंदा रखते हैं।", "purpose1": "[[सच एक-एक ईमानदार फ़ैसले से बनता है।]] छोटे झूठों की दीवार ईंट-ईंट से बनती है और वैसे ही गिरती है। छोटी बातों में ईमानदारी चुनिए, पूरी ज़िंदगी सच्ची हो जाएगी।", "guilt1": "[[ग़लतियाँ धोई जा सकती हैं।]] पछतावा एक इशारा है, सज़ा नहीं। ग़लती मानिए, माफ़ी माँगिए, भरपाई कीजिए और आदत बदलिए। प्यार और सच्चा बदलाव मन को ऐसे धोते हैं जैसे पानी कपड़े को।", "joy1": "[[ख़ुशी बाँटने से बढ़ती है।]] जिनका मन एक से जुड़ा है, वे सदा खिले रहते हैं। अपने अच्छे पलों का जश्न मनाइए, हँसिए, गाइए, और दूसरों को भी अपनी ख़ुशी में शामिल कीजिए। बाँटी हुई ख़ुशी दुगनी होती है।", "lonely1": "[[आप कभी दायरे से बाहर नहीं हैं।]] सब जीवों का एक ही दाता है, इसलिए कोई सच में अकेला नहीं। जब अकेलापन आए, तो किसी एक इंसान से संपर्क कीजिए, और याद रखिए कि आप एक बहुत बड़े परिवार का हिस्सा हैं।", "loved1": "[[आपकी क़ीमत आप ख़ुद हैं, आपका काम नहीं।]] प्यार भरी आँखों ने कीचड़ को केसर बना दिया। मान लीजिए कि आप मायने रखते हैं, और दूसरों को भी उन्हीं प्यार भरी आँखों से देखिए।"}, "pa": {"anger1": "ਗੁੱਸਾ ਤੇਜ਼ ਹੁੰਦਾ ਹੈ; [[ਸਿਆਣਪ ਇਕ ਠਹਿਰਾਅ ਹੈ]]। ਜਤ ਨੂੰ ਆਪਣੀ ਕਾਰਜਸ਼ਾਲਾ ਤੇ ਧੀਰਜ ਨੂੰ ਆਪਣਾ ਸੁਨਿਆਰ ਬਣਾਓ। ਜਵਾਬ ਦੇਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਹ ਲਓ, ਰੁਕੋ ਤੇ ਗਰਮੀ ਨੂੰ ਠੰਢਾ ਹੋਣ ਦਿਓ। ਫਿਰ ਇਉਂ ਬੋਲੋ ਕਿ ਕੱਲ੍ਹ ਪਛਤਾਉਣਾ ਨਾ ਪਵੇ।", "ego1": "[[ਕੋਈ ਵੀ ਕਾਮਯਾਬੀ ਇਕੱਲੀ ਤੁਹਾਡੀ ਨਹੀਂ ਹੁੰਦੀ।]] ਅਧਿਆਪਕ, ਪਰਿਵਾਰ, ਸਹੀ ਸਮਾਂ ਤੇ ਅਣਗਿਣਤ ਅਣਦਿਸਦੇ ਹੱਥਾਂ ਨੇ ਤੁਹਾਨੂੰ ਇੱਥੇ ਤਕ ਪਹੁੰਚਾਇਆ। ਵੱਡੇ ਹੁਕਮ ਨੂੰ ਯਾਦ ਰੱਖਣ ਨਾਲ ਹਉਮੈ ਸ਼ਾਂਤ ਰਹਿੰਦੀ ਹੈ ਤੇ ਤੁਸੀਂ ਘਮੰਡ ਦੀ ਥਾਂ ਸ਼ੁਕਰਾਨੇ ਨਾਲ ਖ਼ੁਸ਼ੀ ਮਨਾਉਂਦੇ ਹੋ।", "comp1": "[[ਨਾ ਕੋਈ ਉੱਚਾ ਹੈ, ਨਾ ਕੋਈ ਨੀਵਾਂ।]] ਤੁਲਨਾ ਖ਼ੁਸ਼ੀ ਖੋਹ ਲੈਂਦੀ ਹੈ ਤੇ ਲੋਕਾਂ ਨੂੰ ਸਾਡੇ ਤੋਂ ਲੁਕਾ ਦਿੰਦੀ ਹੈ। ਆਪਣੇ ਆਪ ਨੂੰ ਕੱਲ੍ਹ ਵਾਲੇ ਆਪ ਨਾਲ ਮਿਣੋ, ਤੇ ਮਾਲਕ ਤੋਂ ਲੈ ਕੇ ਸਫ਼ਾਈ ਕਰਨ ਵਾਲੇ ਤਕ, ਸਭ ਨੂੰ ਇਕੋ ਜਿਹਾ ਆਦਰ ਦਿਓ।", "accept1": "[[ਆਪਣਾ ਹਿੱਸਾ ਪੂਰੇ ਮਨ ਨਾਲ ਕਰੋ, ਬਾਕੀ ਛੱਡ ਦਿਓ।]] ਜ਼ਿੰਦਗੀ ਦਾ ਬਹੁਤ ਕੁਝ ਸਾਡੇ ਹੱਥ ਵਿਚ ਨਹੀਂ। ਹੁਕਮ ਨਾਲ ਤੁਰਨਾ ਯਾਨੀ ਬਿਨਾਂ ਬੇਚੈਨੀ ਦੇ ਮਿਹਨਤ: ਜਿੱਥੇ ਹੋ ਸਕੇ ਚੰਗਾ ਕਰੋ, ਜਿੱਥੇ ਨਾ ਹੋ ਸਕੇ ਸ਼ਾਂਤੀ ਨਾਲ ਮੰਨ ਲਓ।", "content1": "[[ਕਾਫ਼ੀ ਹੋਣਾ ਇਕ ਅਹਿਸਾਸ ਹੈ, ਕੋਈ ਗਿਣਤੀ ਨਹੀਂ।]] ਸੰਤੋਖ ਦਾ ਅਰਥ ਹੈ ਇਮਾਨਦਾਰ ਮਿਹਨਤ ਤੇ ਜੋ ਹੈ ਉਸ ਲਈ ਸਿੱਧਾ ਜਿਹਾ ਸ਼ੁਕਰਾਨਾ। ਹੋਰ ਦੀ ਦੌੜ ਕਦੇ ਨਹੀਂ ਮੁੱਕਦੀ। ਕਾਫ਼ੀ ਨੂੰ ਪਛਾਣਨ ਨਾਲ ਸ਼ਾਂਤੀ ਅੱਜ ਹੀ ਸ਼ੁਰੂ ਹੋ ਜਾਂਦੀ ਹੈ।", "listen1": "[[ਸੁਣਨਾ ਸਲਾਹ ਨਾਲੋਂ ਵੱਧ ਭਰਦਾ ਹੈ।]] ਜਦੋਂ ਕੋਈ ਬੋਲੇ, ਤਾਂ ਜਵਾਬ ਸੋਚਣ ਦੀ ਥਾਂ ਪੂਰਾ ਧਿਆਨ ਉਸ ਨੂੰ ਦਿਓ। ਲੋਕਾਂ ਨੂੰ ਤੇ ਗੁਰੂ ਦੀ ਬਾਣੀ ਨੂੰ ਸੱਚਮੁੱਚ ਸੁਣਨ ਨਾਲ ਦੁੱਖ ਤੇ ਗ਼ਲਤਫ਼ਹਿਮੀ ਧੁਲ ਜਾਂਦੇ ਹਨ।", "habit1": "[[ਰੋਜ਼ ਦੀਆਂ ਛੋਟੀਆਂ ਗੱਲਾਂ ਹੀ ਤੁਹਾਡੀ ਪਛਾਣ ਬਣਦੀਆਂ ਹਨ।]] ਜਿਵੇਂ ਅਮਰਦਾਸ ਜੀ ਹਰ ਸਵੇਰ ਪਾਣੀ ਲਿਆਉਂਦੇ ਰਹੇ, ਉਵੇਂ ਹੀ ਹਰ ਸਵੇਰ ਦੇ ਕੁਝ ਸ਼ਾਂਤ ਮਿੰਟ ਮਨ ਨੂੰ ਉਸ ਤੋਂ ਵੱਧ ਘੜਦੇ ਹਨ ਜਿੰਨਾ ਕਦੇ-ਕਦਾਈਂ ਦੀ ਵੱਡੀ ਕੋਸ਼ਿਸ਼।", "action1": "[[ਜੋ ਬੀਜਦੇ ਹਾਂ, ਉਹੀ ਵੱਢਦੇ ਹਾਂ।]] ਤੁਹਾਡੇ ਸ਼ਬਦ ਤੇ ਕੰਮ ਬੀਜ ਹਨ। ਅੱਜ ਇਮਾਨਦਾਰੀ, ਦਇਆ ਤੇ ਮਿਹਨਤ ਬੀਜੋ, ਫ਼ਸਲ ਤੁਹਾਡੀ ਹੋਵੇਗੀ। ਤੁਹਾਡਾ ਖੇਤ ਕੋਈ ਹੋਰ ਨਹੀਂ ਬੀਜ ਸਕਦਾ।", "hard1": "[[ਔਖੇ ਦਿਨ ਜ਼ਿੰਦਗੀ ਦਾ ਹਿੱਸਾ ਹਨ, ਉਸ ਦਾ ਅੰਤ ਨਹੀਂ।]] ਦੁੱਖ ਸਭ ਕੋਲ ਆਉਂਦਾ ਹੈ। ਦਿਨ ਨੂੰ ਪਰਵਾਨ ਕਰੋ, ਕਿਸੇ ਆਪਣੇ ਨਾਲ ਗੱਲ ਕਰੋ, ਇਕ ਛੋਟਾ ਚੰਗਾ ਕੰਮ ਕਰੋ, ਤੇ ਭਰੋਸਾ ਰੱਖੋ ਕਿ ਭਾਰੇ ਮੌਸਮ ਲੰਘ ਜਾਂਦੇ ਹਨ।", "kind1": "[[ਨਿਰਭਉ, ਨਿਰਵੈਰ: ਬਿਨਾਂ ਡਰ, ਬਿਨਾਂ ਵੈਰ।]] ਸਭ ਵਿਚ ਇਕੋ ਜੋਤ ਵੇਖਣ ਦਾ ਅਰਥ ਹੈ ਬਿਨਾਂ ਪੁੱਛੇ ਮਦਦ ਕਰਨਾ ਕਿ ਕੌਣ ਕਿਸ ਪਾਸੇ ਹੈ, ਜਿਵੇਂ ਭਾਈ ਘਨੱਈਆ ਨੇ ਹਰ ਜ਼ਖ਼ਮੀ ਸਿਪਾਹੀ ਨੂੰ ਪਾਣੀ ਪਿਲਾਇਆ।", "mind1": "[[ਮਨ ਜਿੱਤਿਆ ਤਾਂ ਜਗ ਜਿੱਤਿਆ।]] ਬੇਚੈਨ ਮਨ ਫ਼ਿਕਰਾਂ ਤੇ ਸਕਰੀਨਾਂ ਵੱਲ ਭੱਜਦਾ ਹੈ। ਉਸ ਨੂੰ ਪਿਆਰ ਨਾਲ ਵਾਰ-ਵਾਰ ਵਰਤਮਾਨ ਵਿਚ ਵਾਪਸ ਲਿਆਓ। ਇਹੀ ਸ਼ਾਂਤ ਅਭਿਆਸ ਅਸਲ ਜਿੱਤ ਹੈ।", "nature1": "[[ਪਵਣੁ ਗੁਰੂ, ਪਾਣੀ ਪਿਤਾ, ਧਰਤੀ ਮਾਤਾ।]] ਕੁਦਰਤ ਨੂੰ ਪਰਿਵਾਰ ਵਾਂਗ ਸਾਂਭੋ: ਘੱਟ ਬਰਬਾਦ ਕਰੋ, ਕੁਝ ਵੀ ਗੰਦਾ ਨਾ ਕਰੋ, ਤੇ ਰੋਜ਼ ਇਕ ਪਲ ਰੁਕ ਕੇ ਅਸਮਾਨ, ਰੁੱਖਾਂ ਤੇ ਪਾਣੀ ਨੂੰ ਵੇਖੋ ਜੋ ਸਾਨੂੰ ਜਿਊਂਦਾ ਰੱਖਦੇ ਹਨ।", "purpose1": "[[ਸੱਚ ਇਕ-ਇਕ ਇਮਾਨਦਾਰ ਫ਼ੈਸਲੇ ਨਾਲ ਬਣਦਾ ਹੈ।]] ਛੋਟੇ ਝੂਠਾਂ ਦੀ ਕੰਧ ਇੱਟ-ਇੱਟ ਨਾਲ ਬਣਦੀ ਹੈ ਤੇ ਉਵੇਂ ਹੀ ਡਿੱਗਦੀ ਹੈ। ਛੋਟੀਆਂ ਗੱਲਾਂ ਵਿਚ ਇਮਾਨਦਾਰੀ ਚੁਣੋ, ਸਾਰੀ ਜ਼ਿੰਦਗੀ ਸੱਚੀ ਹੋ ਜਾਵੇਗੀ।", "guilt1": "[[ਗ਼ਲਤੀਆਂ ਧੋਤੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।]] ਪਛਤਾਵਾ ਇਕ ਇਸ਼ਾਰਾ ਹੈ, ਸਜ਼ਾ ਨਹੀਂ। ਗ਼ਲਤੀ ਮੰਨੋ, ਮਾਫ਼ੀ ਮੰਗੋ, ਭਰਪਾਈ ਕਰੋ ਤੇ ਆਦਤ ਬਦਲੋ। ਪਿਆਰ ਤੇ ਸੱਚਾ ਬਦਲਾਅ ਮਨ ਨੂੰ ਇਉਂ ਧੋਂਦੇ ਹਨ ਜਿਵੇਂ ਪਾਣੀ ਕੱਪੜੇ ਨੂੰ।", "joy1": "[[ਖ਼ੁਸ਼ੀ ਵੰਡਣ ਨਾਲ ਵਧਦੀ ਹੈ।]] ਜਿਨ੍ਹਾਂ ਦਾ ਮਨ ਇਕ ਨਾਲ ਜੁੜਿਆ ਹੈ, ਉਹ ਸਦਾ ਖਿੜੇ ਰਹਿੰਦੇ ਹਨ। ਆਪਣੇ ਚੰਗੇ ਪਲਾਂ ਦੀ ਖ਼ੁਸ਼ੀ ਮਨਾਓ, ਹੱਸੋ, ਗਾਓ, ਤੇ ਹੋਰਾਂ ਨੂੰ ਵੀ ਆਪਣੀ ਖ਼ੁਸ਼ੀ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ। ਵੰਡੀ ਹੋਈ ਖ਼ੁਸ਼ੀ ਦੁੱਗਣੀ ਹੁੰਦੀ ਹੈ।", "lonely1": "[[ਤੁਸੀਂ ਕਦੇ ਘੇਰੇ ਤੋਂ ਬਾਹਰ ਨਹੀਂ।]] ਸਭ ਜੀਆਂ ਦਾ ਇਕੋ ਦਾਤਾ ਹੈ, ਇਸ ਲਈ ਕੋਈ ਸੱਚਮੁੱਚ ਇਕੱਲਾ ਨਹੀਂ। ਜਦੋਂ ਇਕੱਲਾਪਣ ਆਵੇ, ਤਾਂ ਕਿਸੇ ਇਕ ਇਨਸਾਨ ਨਾਲ ਸੰਪਰਕ ਕਰੋ, ਤੇ ਯਾਦ ਰੱਖੋ ਕਿ ਤੁਸੀਂ ਇਕ ਬਹੁਤ ਵੱਡੇ ਪਰਿਵਾਰ ਦਾ ਹਿੱਸਾ ਹੋ।", "loved1": "[[ਤੁਹਾਡੀ ਕੀਮਤ ਤੁਸੀਂ ਆਪ ਹੋ, ਤੁਹਾਡਾ ਕੰਮ ਨਹੀਂ।]] ਪਿਆਰ ਭਰੀਆਂ ਅੱਖਾਂ ਨੇ ਚਿੱਕੜ ਨੂੰ ਕੇਸਰ ਬਣਾ ਦਿੱਤਾ। ਮੰਨ ਲਓ ਕਿ ਤੁਸੀਂ ਮਾਇਨੇ ਰੱਖਦੇ ਹੋ, ਤੇ ਹੋਰਾਂ ਨੂੰ ਵੀ ਉਨ੍ਹਾਂ ਹੀ ਪਿਆਰ ਭਰੀਆਂ ਅੱਖਾਂ ਨਾਲ ਵੇਖੋ।"}};
@@ -1064,7 +1297,7 @@ document.addEventListener('click',function(e){
 document.addEventListener('keydown',function(e){ if(!cur) return; if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); go(1); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); go(-1); } else if(e.key==='Escape') closeJ(); else if(e.key===' '){ e.preventDefault(); $('rplay').click(); } });
 window.addEventListener('resize',function(){ if(cur && !anim) buildPanels(); });
 if(window.matchMedia) try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ if(!cur) render(); }); }catch(e){}
-function fromHash(){ var h=(location.hash||'').replace('#',''); if(['today','explore','reflect','me'].indexOf(h)>-1){ tab=h; sub=null; } render(); }
+function fromHash(){ var h=(location.hash||'').replace('#',''); if(['today','explore','reflect','chat','me'].indexOf(h)>-1){ tab=h; sub=null; } render(); }
 window.addEventListener('hashchange',fromHash);
 applyTheme(); fromHash();
 if('serviceWorker' in navigator && location.protocol==='https:' && !/claudeusercontent|claude\.ai/.test(location.host)){ window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }

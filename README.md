@@ -30,3 +30,11 @@ It is a trial build. The Gurbani meanings are simple working paraphrases, and th
 ## Sources for the sakhis
 
 Puratan and Bala Janamsakhis, the Vaaran of Bhai Gurdas, M. A. Macauliffe's *The Sikh Religion*, Bhai Vir Singh, Harbans Singh's *Encyclopaedia of Sikhism*, and widely told Sikh tradition. Where tellings differ, the most commonly told version is used, and the text says "tradition remembers" where the account is traditional rather than documented.
+
+## Chat
+
+The Chat tab answers life questions in the light of Gurbani.
+
+- **Gurbani comes from a database, not from memory.** `gb/` holds every line of Sri Guru Granth Sahib from the open [Shabad OS database](https://github.com/shabados/database) (MIT): Gurmukhi, Ang, author, raag, an English translation (Dr. Sant Singh Khalsa) and Prof. Sahib Singh's Punjabi teeka. The AI must search it and read the **whole shabad** before explaining a line.
+- **Every quoted line is checked.** Lines found in the database show "Checked in Sri Guru Granth Sahib · Ang N". Anything else is flagged.
+- **AI engine:** inside the Claude app the chat runs on the viewer's own Claude account. In the installed app, paste a Google Gemini API key (free tier, from aistudio.google.com) under Me › Chat engine. The key stays on the device.
